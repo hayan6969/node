@@ -20,7 +20,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 function Header() {
   const [openSidebar, setOpenSidebar] = useState(false);
 const [isLogin,setIsLogin]=useState(true)
@@ -43,6 +50,19 @@ const [isLogin,setIsLogin]=useState(true)
         {
           isLogin?
           <div className="border-none outline-none pt-1">
+            <Sheet>
+  <SheetTrigger><FaRegUserCircle className="cursor-pointer border-none outline-none scale-150 bg-black" /></SheetTrigger>
+  <SheetContent className="absolute bg-[#262626] text-white  before:absolute before:w-full border-none before:left-1/2 before:-translate-x-1/2 px-0 before:h-24 before:rounded-b-3xl before:bg-[#004AAD] before:top-0 pt-32">
+    <SheetHeader>
+      <SheetTitle>Are you absolutely sure?</SheetTitle>
+      <SheetDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
+
           <DropdownMenu>
           <DropdownMenuTrigger className="outline border-none" ><FaRegUserCircle className="cursor-pointer border-none outline-none scale-150 bg-black" /></DropdownMenuTrigger>
           <DropdownMenuContent className="absolute bg-[#262626] text-white -top-12 -left-44 w-80 before:absolute before:w-full border-none before:left-1/2 before:-translate-x-1/2 px-0 before:h-24 before:rounded-b-3xl before:bg-[#004AAD] before:top-0 pt-32">
