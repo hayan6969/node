@@ -52,34 +52,24 @@ const [isLogin,setIsLogin]=useState(true)
           <div className="border-none outline-none pt-1">
             <Sheet>
   <SheetTrigger><FaRegUserCircle className="cursor-pointer border-none outline-none scale-150 bg-black" /></SheetTrigger>
-  <SheetContent className="absolute bg-[#262626] text-white  before:absolute before:w-full border-none before:left-1/2 before:-translate-x-1/2 px-0 before:h-24 before:rounded-b-3xl before:bg-[#004AAD] before:top-0 pt-32">
+  <SheetContent className=" bg-[#262626] text-white before:absolute before:w-full border-none before:left-1/2 before:-translate-x-1/2 px-0 before:h-24 before:rounded-b-3xl before:bg-[#004AAD] before:top-0 pt-32">
+  <FaRegUser className="text-5xl cursor-pointer absolute top-16 left-6 text-white bg-[#004AAD] rounded-full border-4 border-white" />
+  <Link href='/settings'><GoGear className="absolute top-3 right-3 text-2xl text-white cursor-pointer bg-[#004AAD]" /></Link>
     <SheetHeader>
-      <SheetTitle>Are you absolutely sure?</SheetTitle>
-      <SheetDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </SheetDescription>
+      <SheetDescription className="text-white pl-4">Username:</SheetDescription>
+      <SheetDescription className="text-white pl-4">Email:</SheetDescription>
+      <div className="w-full px-4 py-6 border-y-2 border-[#cf9f45] gap-4 flex flex-col">
+      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><FaRegUser />Profile</SheetDescription>
+      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><LuHistory />Order History</SheetDescription>
+      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><MdOutlineInventory />Inventory</SheetDescription>
+      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><GrNodes />Node</SheetDescription>
+      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><TbSocial />Social</SheetDescription>
+      </div>
+      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150 pl-4 pt-4"><MdLogout />Logout</SheetDescription>
     </SheetHeader>
   </SheetContent>
 </Sheet>
 
-          <DropdownMenu>
-          <DropdownMenuTrigger className="outline border-none" ><FaRegUserCircle className="cursor-pointer border-none outline-none scale-150 bg-black" /></DropdownMenuTrigger>
-          <DropdownMenuContent className="absolute bg-[#262626] text-white -top-12 -left-44 w-80 before:absolute before:w-full border-none before:left-1/2 before:-translate-x-1/2 px-0 before:h-24 before:rounded-b-3xl before:bg-[#004AAD] before:top-0 pt-32">
-          <FaRegUser className="text-5xl cursor-pointer absolute top-16 left-6 text-white bg-[#004AAD] rounded-full border-4 border-white" />
-          <Link href='/settings'><GoGear className="absolute top-2 right-2 text-2xl text-white cursor-pointer" /></Link>
-            <DropdownMenuLabel className="pl-4">Username:</DropdownMenuLabel>
-            <DropdownMenuLabel className="pl-4">Email:</DropdownMenuLabel>
-            <DropdownMenuSeparator className="bg-[#CD7F32]" />
-            <DropdownMenuItem className="pl-4"><FaRegUser />Profile</DropdownMenuItem>
-            <DropdownMenuItem className="pl-4"><LuHistory />Order History</DropdownMenuItem>
-            <DropdownMenuItem className="pl-4"><MdOutlineInventory />Inventory</DropdownMenuItem>
-            <DropdownMenuItem className="pl-4"><GrNodes />Node</DropdownMenuItem>
-            <DropdownMenuItem className="pl-4"><TbSocial />Social</DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-[#CD7F32]" />
-            <DropdownMenuItem className="py-2 pl-4" ><MdLogout />Logout</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
           </div> : <div className="flex gap-10">
             <Link href="/login" className="px-6 py-1 bg-black text-white border border-[#049ABC] hover:bg-white hover:text-[#080D1B] hover:border-[#080D1B] rounded-full font-medium text-sm cursor-pointer">Login</Link>
             <Link href="/register" className="px-6 py-1 bg-black text-white border border-[#049ABC] hover:bg-white hover:text-[#080D1B] hover:border-[#080D1B] rounded-full font-medium text-sm cursor-pointer">Register</Link>

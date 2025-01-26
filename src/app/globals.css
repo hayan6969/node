@@ -72,7 +72,9 @@ body{
   width: 100vw;
   overflow-x: hidden;
 }
-
+.scrollHidden{
+  scrollbar-width: none;
+}
 @layer utilities {
   .unbordered {
     -webkit-text-stroke: 1px #c95018;

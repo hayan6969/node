@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function HeroPage() {
@@ -51,9 +52,9 @@ function HeroPage() {
             <h1 className="text-4xl font-light ">
               What Sets Us Apart: Our C.O.R.E Values
             </h1>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col py-12 gap-32 justify-center items-center">
               <div className="flex gap-44">
-                <div className=" border-white border-opacity-70 border-b flex gap-6 relative before:absolute before:bottom-0 before:h-2/4 before:w-[1px] before:bg-white before:bg-opacity-70 after:absolute after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-36">
+                <div className=" border-white border-opacity-70 border-b border-l flex gap-6 relative after:absolute after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-[154px]">
                   <div className="h-full p-3 pt-0 flex flex-col gap-4 justify-end">
                     <h1 className="font-semibold">
                       CREATORS & USERS <br />
@@ -65,14 +66,14 @@ function HeroPage() {
                       and users
                     </p>
                   </div>
-                  <p className="unbordered-white text-[12rem] roboto-condensed translate-x-10 translate-y-[4.75rem] relative before:w-32 before:h-32 before:blur-2xl before:absolute before:bg-[#CFB145] before:rounded-full z-10 before:bg-opacity-20 before:top-16 before:-left-4">
-                    C
-                  </p>
+                  <div className=" relative before:absolute before:w-32 before:h-32 before:bg-blue-500 before:rounded-full before:blur-2xl before:opacity-70 before:left-4">
+                  <Image src="./C.svg" width='100' height="100" alt="" className="translate-x-10" />
+                  </div>
                 </div>
-                <div className=" border-white border-opacity-70 border-b flex gap-6 relative before:absolute before:right-0 before:bottom-0 before:h-2/4 before:w-[1px] before:bg-white before:bg-opacity-70 after:absolute after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-36 after:right-0 text-end">
-                  <p className="unbordered-white text-[12rem] roboto-condensed -translate-x-12 translate-y-[4.75rem] relative before:w-32 before:h-32 before:blur-2xl before:absolute before:bg-blue-500 before:rounded-full z-10 before:bg-opacity-20 before:top-16 before:-left-3">
-                    O
-                  </p>
+                <div className=" border-white border-opacity-70 border-b border-r flex gap-6 relative after:absolute after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-[154px] after:right-0 text-end">
+                <div className=" relative before:absolute before:w-32 before:h-32 before:bg-[#CD7F32] before:rounded-full before:blur-2xl before:opacity-70 before:right-4">
+                  <Image src="./O.svg" width='100' height="100" alt="" className="translate-y-1 -translate-x-8 relative before:w-32 before:blur-2xl before:absolute before:bg-blue-500 before:rounded-full z-10 before:bg-opacity-20 before:top-16 before:-left-3    " />
+                </div>
                   <div className="h-full p-3 pt-0 flex flex-col gap-4 justify-end">
                     <h1 className="font-semibold">
                       ONE UNIFIED <br />
@@ -88,7 +89,7 @@ function HeroPage() {
                 </div>
               </div>
               <div className="flex gap-52 -translate-y-12">
-                <div className=" border-white border-opacity-70 border-b flex gap-6 relative before:absolute before:bottom-0 before:h-2/4 before:w-[1px] before:bg-white before:bg-opacity-70 after:absolute after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-36">
+                <div className=" border-white border-opacity-70 border-b flex gap-6 relative border-l after:absolute after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-[155.5px]">
                   <div className="h-full p-3 pt-0 flex flex-col gap-4 justify-end pl-4">
                     <h1 className="font-semibold">
                       REVOLUTIONARY
@@ -101,14 +102,14 @@ function HeroPage() {
                       independent processes.
                     </p>
                   </div>
-                  <p className="unbordered-white text-[12rem] roboto-condensed translate-x-[4.5rem] translate-y-[4.75rem] relative before:w-32 before:h-32 before:blur-2xl before:absolute before:bg-blue-500 before:rounded-full z-10 before:bg-opacity-20 before:top-16 before:-left-4">
-                    R
-                  </p>
+                  <div className=" relative before:absolute before:w-32 before:h-32 before:bg-[#CD7F32] before:rounded-full before:blur-2xl before:opacity-70 before:left-5">
+                  <Image src="./R.svg" width='100' height="100" alt="" className="translate-y-1.5 translate-x-16 ml-1 relative before:w-32 before:blur-2xl before:absolute before:bg-blue-500 before:rounded-full z-10 before:bg-opacity-20 before:top-16 before:-left-3    " />
+                  </div>
                 </div>
-                <div className=" border-white border-opacity-70 border-b flex gap-6 relative before:absolute before:right-0 before:bottom-0 before:h-2/4 before:w-[1px] before:bg-white before:bg-opacity-70 after:absolute after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-36 after:right-0 text-end">
-                  <p className="unbordered-white text-[12rem] roboto-condensed -translate-x-12 translate-y-[4.75rem] relative before:w-32 before:h-32 before:blur-2xl before:absolute before:bg-[#CFB145] before:rounded-full z-10 before:bg-opacity-20 before:top-16 before:-left-3">
-                    E
-                  </p>
+                <div className=" border-white border-opacity-70 border-b flex gap-6 relative after:absolute border-r after:w-2/3 after:h-[1px] after:bg-white after:bg-opacity-70 after:bottom-[155.5px] after:right-0 text-end">
+                <div className=" relative before:absolute before:w-32 before:h-32 before:bg-blue-500 before:rounded-full before:blur-2xl before:opacity-70 before:right-4">
+                <Image src="./E.svg" width='80' height="80" alt="" className="translate-y-1.5 -translate-x-8 relative before:w-32 before:blur-2xl before:absolute before:bg-blue-500 before:rounded-full z-10 before:bg-opacity-20 before:top-16 before:-left-3    " />
+                </div>
                   <div className="h-full p-3 pt-0 flex flex-col gap-4 justify-end">
                     <h1 className="font-semibold">
                       ENGAGED
