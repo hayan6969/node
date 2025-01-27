@@ -53,13 +53,8 @@ function Roadmap() {
 
       <div className="flex py-44">
         <div className="w-full"></div>
-      <div
-      style={{
-        height: "100vh", // Full-page scrollable height
-        background: "white", // Background color for the entire page
-      }}
-    >
-      <div className="w-2 bg-slate-500 overflow-hidden bg-opacity-40"><motion.div className="w-full bg-[#CFB145]" animate={controls} initial={{ height: 100 }} transition={{ type: "tween" }} /></div>
+      <div className="h-screen bg-white bg-opacity-50">
+      <div className="w-2 bg-slate-500 overflow-hidden bg-opacity-40"><motion.div className="w-full bg-[#CD7F32]" animate={controls} initial={{ height: 100 }} transition={{ type: "tween" }} /></div>
         <div className="w-full"></div>
     </div>
       </div>

@@ -12,7 +12,7 @@ function Page() {
     <Header/>
     <div className='bg-[#080808] text-white min-h-screen p-10 md:p-20 pb-0 md:pb-0'>
         <div className='flex items-center justify-center relative'>
-        <h1 className='mt-10 md:mt-20 text-[9vw] unbordered-white relative z-10 before:absolute before:w-[85vw] before:rounded-xl boxShadow2 before:h-10 before:top-1/2 before:-translate-y-1/2 before:bg-[#CD7F32] flex justify-center items-center before:-z-10'>TOKENOMICS</h1>
+        <h1 className='mt-10 md:mt-20 text-[9vw] unbordered-white relative z-10 before:mt-2 before:absolute before:w-[85vw] before:rounded-xl boxShadow2 before:h-10 before:top-1/2 before:-translate-y-1/2 before:bg-[#CD7F32] flex justify-center items-center before:-z-10'>TOKENOMICS</h1>
         </div>
         <p className='para mt-10 md:mt-20'>
         At ASS I AM, we understand that a well-structured and  balanced tokenomic system is the cornerstone of success and sustainability. We are taking the necessary time to design a framework that not only meets today’s standards but sets new ones  
