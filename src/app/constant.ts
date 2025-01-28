@@ -13,7 +13,6 @@ export const SETTING_ACCOUNT_LINKS=[
     {title:"Activity Log",link:"/settings"},
 ]
 export const SETTING_SECURITY_LINKS=[
-    {title:"Password",link:"/settings"},
-    {title:"2FA-Aithentication",link:"/settings"},
+    {title:"Account Security",link:"/settings"},
     {title:"Delete Account",link:"/settings"},
 ]
