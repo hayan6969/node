@@ -1,11 +1,22 @@
 import React from "react";
 import { FaCircle } from "react-icons/fa6";
 import StayInLoop from "./StayInLoop";
+import Image from "next/image";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa6";
+import { FaMediumM } from "react-icons/fa";
+import { BsTelegram } from "react-icons/bs";
+import { FaDiscord } from "react-icons/fa6";
 
 function StayConnected() {
   return (
     <div className="w-full h-full bg-[#080808]  text-white pt-24 flex flex-col items-center">
-      <h1 className='text-7xl font-semibold relative before:absolute before:content-["STAY"] before:-top-20 before:-left-4 before:unbordered-white before:text-8xl before:w-full before:h-full before:opacity-50 after:absolute after:content-["CONNECTED"] after:-bottom-12 after:-left-4 after:unbordered-white after:text-8xl after:w-full after:h-full after:opacity-50 '> Stay Connected</h1>
+      
+      <h1 className='text-5xl font-semibold relative'>
+      <Image src='./Stay.svg' height='100' width='250' alt="" className="absolute bottom-2/3 -left-1/4 translate-x-1/4" />
+      <Image src='./Connected.svg' height='150' width='600' alt="" className="absolute top-full right-1/4 translate-x-1/4 scale-125" />
+         Stay Connected</h1>
       <div className="pt-52 flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <h1 className="heading">Don't Miss a Moment</h1>
@@ -26,6 +37,16 @@ function StayConnected() {
           </div>
         </div>
         <p className="para">We're just getting started, and you're a key part of this journey <br /><b>Subscribe now</b> and stay at the forefront of innovation.</p>
+        <div className='w-full flex items-center justify-end'>
+          <div className='flex gap-2'>
+          <FaXTwitter className="cursor-pointer" />
+          <FaYoutube className="cursor-pointer" />
+          <FaInstagram className="cursor-pointer" />
+          <BsTelegram className="cursor-pointer" />
+          <FaDiscord className="cursor-pointer" />
+          <FaMediumM className="cursor-pointer"/>
+          </div>
+        </div>
       </div>
       <StayInLoop/>
     </div>

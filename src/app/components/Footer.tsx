@@ -2,7 +2,9 @@ import React from "react";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa6";
+import { FaMediumM } from "react-icons/fa";
+import { BsTelegram } from "react-icons/bs";
+import { FaDiscord } from "react-icons/fa6";
 export default function Footer() {
   const CASES = [
     "UI design",
@@ -36,12 +38,14 @@ export default function Footer() {
       <footer className="p-14 md:p-20 bg-black text-white w-full border-t-2 border-[#cf9f45] flex justify-between">
         <div className="flex flex-col gap-2">
           <div>LOGO.</div>
-          <div className="flex gap-4 text-xl items-center">
-            <FaXTwitter className="cursor-pointer" />
-            <FaInstagram className="cursor-pointer" />
-            <FaYoutube className="cursor-pointer" />
-            <FaLinkedin className="cursor-pointer" />
-          </div>
+           <div className='flex gap-2'>
+                    <FaXTwitter className="cursor-pointer" />
+                    <FaYoutube className="cursor-pointer" />
+                    <FaInstagram className="cursor-pointer" />
+                    <BsTelegram className="cursor-pointer" />
+                    <FaDiscord className="cursor-pointer" />
+                    <FaMediumM className="cursor-pointer"/>
+                    </div>
         </div>
         <div className="flex flex-col gap-6">
           <h6 className="font-semibold">Use cases</h6>

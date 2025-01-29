@@ -54,12 +54,12 @@ function Page() {
 <div className='relative mt-20 md:mt-32'>
       <div className='flex items-center justify-center flex-col '>
         <div className='flex  justify-start w-[58%]'>
-        <h1 className='text-[8vw] font-bold unbordered-white leading-none opacity-65 '>
+        <h1 className='text-[8vw] font-bold unbordered-white leading-none '>
     STAY
 </h1>
         </div>
 
-<h1 className='text-[8vw] font-bold unbordered-white leading-none opacity-65'>
+<h1 className='text-[8vw] font-bold unbordered-white leading-none'>
     WITH US
 </h1>
 </div>
