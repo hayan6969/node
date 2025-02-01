@@ -28,9 +28,19 @@ video will come here
         </div>
         
         </div> */}
-    <HeroPage/>
+    {/* <HeroPage/>
     <Decentralization/>
-    <Revolution/>
+    <Revolution/> */}
+   <div>
+      <div className="bg-[#080808] w-screen h-[90vh]">
+        <div className="flex justify-center items-center h-full">
+          <div className="text-white text-center">
+            <h1 className="text-4xl font-bold">Home page</h1>
+            <p className="text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in odio nec ligula aliquam fringilla. Donec in odio nec ligula aliquam fringilla.</p>
+          </div>
+        </div>
+      </div>
+   </div>
     {/* <CardCarousel/> */}
     <div className="w-screen px-20 bg-[#080808]"><Footer/></div>
     </>
