@@ -6,9 +6,9 @@ import { GoEye } from "react-icons/go";
 import { GoEyeClosed } from "react-icons/go";
 
 function page() {
-  const { register, handleSubmit, formState: errors } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [inputVisible, setInputVisible] = useState(false);
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data: any) => console.log(data);
   const [continueDisable, setContinueDisable] = useState(true);
 
   return (
