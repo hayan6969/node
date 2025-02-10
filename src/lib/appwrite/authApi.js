@@ -30,7 +30,7 @@ export const enableAuth = async (authType) => {
         // Update the document in the database
         const updatedUser = await databases.updateDocument(
           process.env.NEXT_PUBLIC_DB_ID, // Database ID
-          process.env.NEXT_PUBLICs_USERS_COLLECTION, // Collection ID
+          process.env.NEXT_PUBLIC_USERS_COLLECTION, // Collection ID
           userDocument.$id,        // Document ID
           {twoFa: authType}            // Updated document
         );
@@ -43,7 +43,7 @@ export const enableAuth = async (authType) => {
       }
   
     } catch (error) {
-      // console.error('Error enabling authentication:', error);
+      console.error('Error enabling authentication:', error);
       alert('Failed to enable authentication.');
     }
   };

@@ -325,7 +325,28 @@ export const sendEmailOTP = async (email) => {
   }
 };
 
-export const sendSmsOTP = async (email) => {
+
+
+export const getUserByEmail = async (email) => {
+  try {
+    
+    const response = await databases.listDocuments(process.env.NEXT_PUBLIC_DB_ID,  // Database ID
+      process.env.NEXT_PUBLIC_USERS_COLLECTION, [
+      Query.equal("email", email), // Match email
+    ]);
+    
+    if (response.documents.length > 0) {
+      return response.documents[0]; // Return the first found document
+    } else {
+      return null; // No user found in DB
+    }
+    } catch (error) {
+    console.error("Error fetching user document:", error);
+    return null;
+    }
+}
+
+  export const sendSmsOTP = async (email) => {
   try {
     // let isEn = await isTwoFactorEnabled()
     let user = await getUserByEmail(email);
