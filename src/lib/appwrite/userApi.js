@@ -146,14 +146,14 @@ export const getCurrentUser = async () => {
     // Get logged-in user
     const user = await account.get();
     // console.log('production',process.env.NEXT_PUBLIC_DB_ID);
-    // console.log('cccccccc',user);
+    console.log('cccccccc',user.$id);
     
     // if (!user) return null; // If no user, return null
 
-    // Search for user document in collection by email
+    // Search for user document in collection by user ID
     const response = await databases.listDocuments(process.env.NEXT_PUBLIC_DB_ID,  // Database ID
       process.env.NEXT_PUBLIC_USERS_COLLECTION, [
-      Query.equal("email", user.email), // Match email
+      Query.equal("userId", user.$id), // Match user ID
     ]);
 
     if (response.documents.length > 0) {
@@ -174,18 +174,19 @@ export const registerWithEmailAndPass = async (userData) => {
     userData.email,       // User's email
     userData.password,    // User's password
   );
-  addUserToDB(userData.email, userData.username, userData.firstname, userData.lastname, userData.refer);
+  addUserToDB(userData.email, userData.username, userData.firstname, userData.lastname, userData.refer,user.$id);
   alert('Registering SUCCESS!');
 }
 
-export const addUserToDB = async (email, username, firstname, lastname, refer) => {
+export const addUserToDB = async (email, username, firstname, lastname, refer,userId) => {
   try {
     // console.log('adding to doc');
     const registerData = {
       first_name: firstname,
       last_name: lastname,
       email,
-      username
+      username,
+      userId
     };
 
     // console.log('data', firstname, lastname, email);
@@ -200,7 +201,8 @@ export const addUserToDB = async (email, username, firstname, lastname, refer) =
           email: email,
           first_name: firstname,
           last_name: lastname,
-          refer_of: refer
+          refer_of: refer,
+          userId:userId
         }
       );
       // 
@@ -216,6 +218,7 @@ export const addUserToDB = async (email, username, firstname, lastname, refer) =
           email: email,
           first_name: firstname,
           last_name: lastname,
+          userId:userId
         }
       );
     }
@@ -268,7 +271,8 @@ export const isTwoFactorEnabled = async (email) => {
       process.env.NEXT_PUBLIC_USERS_COLLECTION, [
       Query.equal("email", email), // Match email
     ]);
-    // console.log('two fa is :',response.documents[0]);
+    console.log(response.documents[0].twoFa);
+    // console.log('two fa is :',response.documents[0].twoFa);
     
     return response.documents[0].twoFa; // Check if 2FA is enabled
   } catch (error) {
@@ -404,7 +408,7 @@ export const loginEmailAndPass = async (email, password) => {
     // console.log('Password:', password);  // Debug password value
     const response = await account.createEmailPasswordSession(email, password);
     // console.log("Login successful", response);
-    alert('login success!')
+    // alert('login success!')
     return response;
   } catch (error) {
     console.error("Login failed:", error);
@@ -422,7 +426,7 @@ export const LoginWithOTP = async (userId, otp) => {
     // Attempt to create session using OTP
     const session = await account.createSession(userId, otp);
 
-    alert("LOGIN SUCCESS!");  // Alert on successful login
+    // alert("LOGIN SUCCESS!");  // Alert on successful login
     // console.log('Session created successfully:', session);
 
   } catch (error) {

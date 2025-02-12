@@ -31,7 +31,7 @@ function Account() {
     const fetchUserData = async () => {
       try {
         const userData = await getCurrentUser();
-        console.log('dataaaaaaaaaaaa',userData);
+        // console.log('dataaaaaaaaaaaa',userData);
         
         // Assuming userData has the necessary fields
         setUsername(userData.username || '');
@@ -67,9 +67,9 @@ function Account() {
 
       // Assuming updateUserData is an async function
       const userUpdated = await updateUserData(updatedData);
-      console.log('User data updated:', userUpdated);
+      // console.log('User data updated:', userUpdated);
     } catch (error) {
-      console.log('Error while updating data:', error);
+      console.error( error);
     } finally {
       setLoading(false);
     }

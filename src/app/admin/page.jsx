@@ -1,17 +1,39 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { createJob, getJobsList, updateJob } from '../../lib/appwrite/adminApi';
-import JobManage from '../components/admin/JobManage';
-import JobApplications from '../components/admin/JobApplications';
+import { getCurrentUser } from "@/lib/appwrite/userApi";
+import JobManage from "../components/admin/JobManage";
 
 const Page = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getCurrentUser();
+      if (user && user.isAdmin) {
+        setIsAdmin(true);
+      }
+      setLoading(false);
+    };
+    fetchUser();
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!isAdmin) {
+    return (
+      <>
+        <h2>Access Denied</h2>
+        <p>return to <a href="/" style={{"color":"blue"}}>home</a></p>
+      </>
+  );
+  }
 
   return (
     <>
-
-    {/* <div style={{ padding: "20px", maxWidth: "900px", margin: "0 auto", backgroundColor: "#f8f9fa", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}> */}
       <JobManage />
-    {/* </div> */}
     </>
   );
 };

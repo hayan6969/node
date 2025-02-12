@@ -12,6 +12,7 @@ function page() {
   const [showOtp, setShowOtp] = useState(false);
   const [userId, setUserId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const checkUser = () => {
@@ -25,6 +26,7 @@ function page() {
 
   const onSubmit = async (data) => {
     setErrorMessage(""); // Reset error message
+    setLoading(true);
     try {
       const { email, password, otp } = data;
       let twoFa = await isTwoFactorEnabled(email);
@@ -56,6 +58,8 @@ function page() {
       }
     } catch (error) {
       setErrorMessage(error.message || "An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,7 +102,9 @@ function page() {
               <p className="para">I agree to the Terms and Conditions</p>
             </div>
             <div className="w-full flex justify-center">
-              <input type="submit" value={showOtp ? "Log In" : "Continue"} className={`${continueDisable ? "opacity-70" : "opacity-100"} bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center text-center py-2 cursor-pointer mx-6 mt-12`} disabled={continueDisable} />
+              <button type="submit" className={`${continueDisable ? "opacity-70" : "opacity-100"} bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center text-center py-2 cursor-pointer mx-6 mt-12`} disabled={continueDisable || loading}>
+                {loading ? "Loading..." : showOtp ? "Log In" : "Continue"}
+              </button>
             </div>
           </div>
         </form>
