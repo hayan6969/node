@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Image from "next/image";
 import Footer from "../components/Footer";
-import { requestAccount } from "../../lib/ethereum"; // MetaMask connection logic
 import CrptContainer from "@/components/payments/crptContainer";
 import PayPalPayment from "@/components/payments/PayPalPayment";
 import { calculateTotalCost, getNodesInfo } from "@/lib/appwrite/paymentFunctions";
@@ -12,6 +11,7 @@ function Page() {
   const [counter, setCounter] = useState(1);
   const [paymentMethod, setPaymentMethod] = useState<"crypto" | "paypal" | null>(null);
   const [totalCost, setTotalCost] = useState(null);
+  const [showModal, setShowModal] = useState(false); // ✅ Modal State
 
   // Agreement Checkboxes
   const [agreements, setAgreements] = useState({
@@ -25,18 +25,21 @@ function Page() {
       let nodesInfo = await getNodesInfo();
       let totalCostResponse = await calculateTotalCost(nodesInfo, counter);
       setTotalCost(totalCostResponse);
-      console.log("total cost is: ", totalCost);
+      // console.log("total cost is: ", totalCost);
     })();
   }, [counter]);
 
   const handleBuyNow = () => {
+    if(!localStorage.getItem("isLoggedIn")){
+      alert('Login before buying!');
+      return;
+    }
     if (!agreements.terms || !agreements.refundPolicy || !agreements.acknowledgment) {
       alert("You must agree to all terms before proceeding.");
       return;
     }
 
-    alert("✅ Payment Process Initiated!");
-    // Continue with buy process...
+    setShowModal(true); // ✅ Show Modal Instead of Payment Process
   };
 
   return (
@@ -94,7 +97,7 @@ function Page() {
               </div>
             </div>
 
-            {/* ✅ Hardcoded Agreements Section */}
+            {/* ✅ Agreements Section */}
             <div className="agreements text-white text-sm flex flex-col gap-2 mt-4">
               <label>
                 <input
@@ -122,33 +125,7 @@ function Page() {
               </label>
             </div>
 
-            {/* Payment Method Selection */}
-            <div className="paymentMethodSelection flex flex-col gap-4 text-white">
-              <button
-                className={`w-40 rounded-full p-2 text-center border ${
-                  paymentMethod === "crypto" ? "bg-[#CD7F32]" : "border-[#CD7F32]"
-                } text-white`}
-                onClick={() => setPaymentMethod("crypto")}
-              >
-                Pay with Crypto
-              </button>
-              <button
-                className={`w-40 rounded-full p-2 text-center border ${
-                  paymentMethod === "paypal" ? "bg-[#CD7F32]" : "border-[#CD7F32]"
-                } text-white`}
-                onClick={() => setPaymentMethod("paypal")}
-              >
-                Pay with Paypal
-              </button>
-            </div>
-
-            {/* Payment Component */}
-            <div style={{ display: "flex", gap: "15px" }}>
-              {paymentMethod === "crypto" && <CrptContainer totalCost={totalCost} quantity={counter} />}
-              {paymentMethod === "paypal" && <PayPalPayment totalCost={totalCost} quantity={counter} />}
-            </div>
-
-            {/* ✅ Buy Now Button (Disabled until all agreements are checked) */}
+            {/* ✅ Buy Now Button */}
             <div className="w-full bg-black rounded-lg px-4 py-3 text-white flex justify-center">
               <button
                 className="w-10/12 p-2 text-center rounded-2xl"
@@ -164,6 +141,42 @@ function Page() {
             </div>
           </div>
         </div>
+
+        {/* ✅ Payment Modal */}
+        {showModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white p-6 rounded-lg shadow-lg text-black w-96">
+              <h2 className="text-lg font-bold mb-4">Select Payment Method</h2>
+              <button
+                className={`w-full rounded-full p-2 text-center border mb-2 ${
+                  paymentMethod === "crypto" ? "bg-[#CD7F32]" : "border-[#CD7F32]"
+                }`}
+                onClick={() => setPaymentMethod("crypto")}
+              >
+                Pay with Crypto
+              </button>
+              <button
+                className={`w-full rounded-full p-2 text-center border ${
+                  paymentMethod === "paypal" ? "bg-[#CD7F32]" : "border-[#CD7F32]"
+                }`}
+                onClick={() => setPaymentMethod("paypal")}
+              >
+                Pay with Paypal
+              </button>
+
+              {/* Payment Component */}
+              <div className="mt-4">
+                {paymentMethod === "crypto" && <CrptContainer totalCost={totalCost} quantity={counter} />}
+                {paymentMethod === "paypal" && <PayPalPayment totalCost={totalCost} quantity={counter} />}
+              </div>
+
+              <button className="mt-4 w-full bg-gray-300 p-2 rounded-lg" onClick={() => setShowModal(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="mt-24">
           <Footer />
         </div>

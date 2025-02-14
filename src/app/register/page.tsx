@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { registerWithEmailAndPass } from "@/lib/appwrite/userApi";
+import { sendEmail } from "@/lib/appwrite/paymentFunctions";
 
 function Page() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,7 +18,7 @@ function Page() {
     if (typeof window !== "undefined") {
       const isLoggedIn = localStorage.getItem("isLoggedIn");
       if (isLoggedIn === "true") {
-        window.location.href = "/settings";
+        window.location.href = "/";
         return;
       }
       const urlParams = new URLSearchParams(window.location.search);
@@ -30,6 +31,29 @@ function Page() {
       const { email, password, username, firstname, lastname } = data;
       await registerWithEmailAndPass({ email, password, username, firstname, lastname, refer });
       console.log("User registered successfully", data);
+      alert('Registering SUCCESS!');
+      window.localStorage.setItem("isLoggedIn", "true");
+      await sendEmail(
+        'Welcome to Our Platform!',
+        `Hello ${firstname}, 🎉
+        
+        Thank you for registering with us! We're excited to have you on board.
+      
+        - Your registered email: ${email}
+      
+        If you have any questions, feel free to reach out.
+      
+        Best Regards,  
+        The Team`,
+        `<h2 style="color: blue;">Welcome to Our Platform! 🎉</h2>
+         <p>Hello <strong>${firstname}</strong>,</p>
+         <p>Thank you for registering with us! We're excited to have you on board.</p>
+         <p><strong>Your registered email:</strong> ${email}</p>
+         <p>If you have any questions, feel free to reach out.</p>
+         <p>Best Regards,<br/>The Team</p>`
+      );
+      
+      window.location.href = "/";
     } catch (error) {
       console.error("Error registering user:", error);
     }

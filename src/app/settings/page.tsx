@@ -14,6 +14,7 @@ function Account() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [userId,setUserId] = useState('');
   const [phone, setPhone] = useState('');
 
   // State for initial values
@@ -39,6 +40,7 @@ function Account() {
         setLastName(userData.last_name || '');
         // setEmail(userData.email || '');
         setPhone(userData.phone || '');
+        setUserId(userData.$id || '');
 
         // Set initial values for comparison
         setInitialUsername(userData.username || '');
@@ -48,6 +50,7 @@ function Account() {
         setInitialPhone(userData.phone || '');
       } catch (error) {
         console.error("Error fetching user data:", error);
+        // localStorage.removeItem("isLoggedIn");
       }
     };
 
@@ -208,6 +211,23 @@ function Account() {
             </button>
           </div>
         </div>
+{/* REFER LINK */}
+{/* Refer Link */}
+<div className="flex flex-col gap-2">
+  <p>Refer Link:</p>
+  <div className="border border-slate-500 rounded-full flex justify-between items-center px-3 py-2">
+    <span className="text-sm truncate">{`/register?refer=${userId}`}</span>
+    <button
+      className="border border-[#049ABC] rounded-full px-4 py-1 text-sm"
+      onClick={() => {
+        navigator.clipboard.writeText(`${window.location.origin}/register?refer=${userId}`);
+        alert("Referral link copied!");
+      }}
+    >
+      Copy
+    </button>
+  </div>
+</div>
 
         {/* Update Button */}
         <button

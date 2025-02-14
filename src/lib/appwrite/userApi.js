@@ -140,7 +140,6 @@ export const updateUserData = async (updatedData) => {
 }
 
 export const getCurrentUser = async () => {
-  try {
     // console.log('getting');
 
     // Get logged-in user
@@ -161,10 +160,7 @@ export const getCurrentUser = async () => {
     } else {
       return null; // No user found in DB
     }
-  } catch (error) {
-    console.error("Error fetching user document:", error);
-    return null;
-  }
+
 };
 
 export const registerWithEmailAndPass = async (userData) => {
@@ -174,8 +170,10 @@ export const registerWithEmailAndPass = async (userData) => {
     userData.email,       // User's email
     userData.password,    // User's password
   );
-  addUserToDB(userData.email, userData.username, userData.firstname, userData.lastname, userData.refer,user.$id);
-  alert('Registering SUCCESS!');
+
+  let usr = await addUserToDB(userData.email, userData.username, userData.firstname, userData.lastname, userData.refer,user.$id);
+  await loginEmailAndPass(userData.email,userData.password);
+  return usr;
 }
 
 export const addUserToDB = async (email, username, firstname, lastname, refer,userId) => {
@@ -413,8 +411,6 @@ export const loginEmailAndPass = async (email, password) => {
   } catch (error) {
     console.error("Login failed:", error);
     throw new Error(error);
-    
-    return null;
   }
 };
 
@@ -427,7 +423,7 @@ export const LoginWithOTP = async (userId, otp) => {
     const session = await account.createSession(userId, otp);
 
     // alert("LOGIN SUCCESS!");  // Alert on successful login
-    // console.log('Session created successfully:', session);
+    // console.log('Session created successfully:', session); 
 
   } catch (error) {
     // Log the error for debugging purposes

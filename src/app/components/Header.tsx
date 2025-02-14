@@ -20,7 +20,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { getCurrentUser } from "@/lib/appwrite/userApi"; // Import the getCurrentUser function
+import { getCurrentUser, logOut } from "@/lib/appwrite/userApi"; // Import the getCurrentUser function
 
 function Header() {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -88,7 +88,7 @@ function Header() {
                       <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                         <FaRegUser />Profile
                       </SheetDescription>
-                      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
+                      <SheetDescription onClick={() => window.location.href = "/orders-history"} className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                         <LuHistory />Order History
                       </SheetDescription>
                       <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
@@ -101,8 +101,8 @@ function Header() {
                         <TbSocial />Social
                       </SheetDescription>
                     </div>
-                    <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150 pl-4 pt-4">
-                      <MdLogout />Logout
+                    <SheetDescription onClick={logOut} className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150 pl-4 pt-4">
+                      <MdLogout /> Logout
                     </SheetDescription>
                   </SheetHeader>
                 </SheetContent>

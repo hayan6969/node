@@ -5,9 +5,7 @@ import React, { useState } from 'react';
 import { updateUserPayment, getNodesInfo,calculateTotalCost, convertUsdToEth, createPaymentDocument, updateNode, sendEmail } from "@/lib/appwrite/paymentFunctions";
 
 const CrptContainer = ({totalCost,quantity}) => {
-  // const [address, setAddress] = useState('');
-  // const [amount, setAmount] = useState('');
-  const [err, setErr] = useState(null);
+  // const [err, setErr] = useState(null);
   const [tsx, setTsx] = useState(null);
 
   const [account, setAccount] = useState<string | null>(null);
@@ -78,8 +76,10 @@ const CrptContainer = ({totalCost,quantity}) => {
         alert("Transaction FAILED!");
       }
     } catch (error) {
-      console.log('transaction error', error.message);
-      alert(error.message)
+      if (error.code === 'INSUFFICIENT_FUNDS' || error.message.toLowerCase().includes('insufficient funds')) {
+        console.log('Error: Insufficient funds for transaction.');
+        alert('Error: Insufficient funds for transaction.')
+      }
     }
   }
 
@@ -89,14 +89,14 @@ const CrptContainer = ({totalCost,quantity}) => {
   };
 
   return (
-    <div style={ethContainer}>
+    <div>
 
       {account ? (
         <p>Connected to MetaMask: {account}</p>
       ) : (
         <button
           onClick={handleConnectMetaMask}
-          className="w-40 rounded-full p-2 text-center border border-[#CD7F32] text-white"
+          className="w-40 rounded-full p-2 text-center border border-[#CD7F32] text-black"
         >
           Connect MetaMask
         </button>
@@ -119,22 +119,6 @@ const CrptContainer = ({totalCost,quantity}) => {
     </div>
   );
 };
-const ethContainer = {
-  backgroundColor: 'darkgrey',
-  borderRadius: '10px',
-  position: 'absolute',
-  padding: '20px',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '400px',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  boxShadow: `rgb(5 255 42 / 73%) 0px 0.0625em 0.0625em 4px, 
-                rgb(0 255 67 / 67%) 0px 0.125em 0.5em 6px, 
-                rgb(0 255 104 / 59%) 0px 0px 0px 1px inset`
-};
+
 
 export default CrptContainer;

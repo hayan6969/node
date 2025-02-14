@@ -18,7 +18,7 @@ function page() {
     const checkUser = () => {
       const isLoggedIn = localStorage.getItem("isLoggedIn");
       if (isLoggedIn === "true") {
-        window.location.href = "/settings";
+        window.location.href = "/";
       }
     };
     checkUser();
@@ -34,7 +34,7 @@ function page() {
       if (twoFa === "not") {
         await loginEmailAndPass(email, password);
         window.localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "/settings";
+        window.location.href = "/";
       } else if (twoFa === "email") {
         if (!showOtp) {
           const userIdRes = await sendEmailOTP(email);
@@ -43,7 +43,7 @@ function page() {
         } else {
           await LoginWithOTP(userId, otp);
           window.localStorage.setItem("isLoggedIn", "true");
-          window.location.href = "/settings";
+          window.location.href = "/";
         }
       } else if (twoFa === "sms") {
         if (!showOtp) {
@@ -53,7 +53,7 @@ function page() {
         } else {
           await LoginWithOTP(userId, otp);
           window.localStorage.setItem("isLoggedIn", "true");
-          window.location.href = "/settings";
+          window.location.href = "/";
         }
       }
     } catch (error) {

@@ -2,6 +2,21 @@ import { ID, Query } from "appwrite";
 import { account, databases } from "./appwrite";
 import {getCurrentUser} from './userApi';
 
+
+export const getPaymentDetails = async (paymentId) => {
+  try {
+    const paymentDetails = await databases.getDocument(
+      process.env.NEXT_PUBLIC_DB_ID,  // Database ID
+      process.env.NEXT_PUBLIC_PAYMENTS_COLLECTION,  // Collection ID
+      paymentId)
+
+      return paymentDetails;
+  } catch (error) {
+    console.error(error);
+    return;
+  }
+}
+
 export const calculateTotalCost = (nodesInfo, purchase_quantity) => {
     if (purchase_quantity < 1 || purchase_quantity > 10) {
         throw new Error("You can only buy between 1 and 10 nodes per transaction.");
@@ -53,7 +68,7 @@ export const sendEmail = async (subject,text,html) => {
     try {
         
         let user = await getCurrentUser();
-        console.log('sending payment email',user.email);
+        // console.log('sending payment email',user.email);
 
         const response = await fetch("/api/email-send", {
           method: "POST",
@@ -91,11 +106,11 @@ export const createOrder = async (totalCost,quantity) => {
 
 export const getNodesInfo = async () => {
     try {
-        console.log('getting info');
+        // console.log('getting info');
         
         const document = await databases.getDocument(process.env.NEXT_PUBLIC_DB_ID,
         process.env.NEXT_PUBLIC_NODES_COLLECTION,"67a611540017a9fbc0c9");
-        console.log(document);
+        // console.log(document);
         
         return document;
     } catch (error) {
@@ -106,7 +121,7 @@ export const getNodesInfo = async () => {
 
 export const createPaymentDocument = async (total_cost,quantity) => {
     try {
-        console.log('creating payment doc:',total_cost,quantity);
+        // console.log('creating payment doc:',total_cost,quantity);
         
         const paymentCreated = await databases.createDocument(
             process.env.NEXT_PUBLIC_DB_ID,  // Database ID
@@ -116,12 +131,12 @@ export const createPaymentDocument = async (total_cost,quantity) => {
                 total_cost:total_cost,
                 quantity:quantity
             });
-        console.log('payment create Success!',paymentCreated);
+        // console.log('payment create Success!',paymentCreated);
         // push to  current user payments_history
         await updateUserPayment(paymentCreated.$id);
         return paymentCreated;
     } catch (error) {
-        console.log('payment creating success');
+        console.error(error);
     }
 }
 
@@ -150,7 +165,7 @@ export const updateNode = async (nodes_sold) => {
         { nodes_sold: updatedNodesSold }
       );
   
-      console.log("Nodes sold updated successfully:", response);
+      // console.log("Nodes sold updated successfully:", response);
       return response;
     } catch (error) {
       console.error("Error updating nodes_sold:", error.message);
@@ -163,7 +178,7 @@ export const updateUserPayment = async (paymentId) => {
     let user = await getCurrentUser();
     if (!user) throw new Error("User not found");
 
-    console.log("Updating payment history for:", user.email);
+    // console.log("Updating payment history for:", user.email);
 
     // Fetch the existing user document
     const userDoc = await databases.getDocument(
@@ -171,12 +186,12 @@ export const updateUserPayment = async (paymentId) => {
       process.env.NEXT_PUBLIC_USERS_COLLECTION, // Collection ID
       user.$id // Use the user's existing document ID
     );
-    console.log('got user');
+    // console.log('got user');
     
     // Ensure payments_history is an array, then append new payment ID
     const updatedPayments = userDoc.payments_history || [];
     updatedPayments.push(paymentId);
-    console.log('pushing user');
+    // console.log('pushing user');
     
     // Update the user document
     const response = await databases.updateDocument(
@@ -188,7 +203,7 @@ export const updateUserPayment = async (paymentId) => {
       }
     );
 
-    console.log("Payment history updated successfully");
+    // console.log("Payment history updated successfully");
     return response;
   } catch (error) {
     console.error("Error updating payment history:", error.message);

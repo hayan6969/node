@@ -14,7 +14,7 @@ function Security() {
     const fetchUser = async () => {
       try {
         const user = await getCurrentUser();
-        console.log('user:', user);
+        // console.log('user:', user);
         
         setAuthType(user.twoFa || null); // Set the 2FA status (sms, email, or not)
       } catch (error) {
@@ -81,12 +81,6 @@ function Security() {
       >
         Update Password
       </button>
-
-      {/* Two Factor Authentication */}
-      <div className="w-full flex justify-between items-center">
-        <p>Two Factor Authentication (2FA):</p>
-        <button className="py-1 px-6 rounded-full border border-[#CD7F32] text-sm">Edit</button>
-      </div>
 
       {/* SMS Authentication */}
       <div className="w-full flex justify-between items-center">
