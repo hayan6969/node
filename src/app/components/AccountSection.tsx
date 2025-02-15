@@ -2,7 +2,7 @@ import React from 'react'
 
 function AccountSection() {
   return (
-    <section className=' bg-black rounded-2xl py-8 px-10 h-full w-full flex flex-col gap-6 text-white overflow-y-scroll relative overflow-x-hidden scrollHidden'>
+    <section className=' bg-black rounded-2xl py-8 px-10  h-full w-full flex flex-col gap-6 text-white overflow-y-scroll relative overflow-x-hidden scrollHidden'>
       <h1 className='text-2xl font-semibold'>Account:</h1>
       <div className='w-full flex justify-between items-center'>
         <p>Public Profile Settings</p>

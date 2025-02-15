@@ -2,8 +2,6 @@
 import { useState } from "react"
 import Link from 'next/link';
 import { NAVLINKS_ITEMS } from "../constant";
-import { BsTelegram } from "react-icons/bs";
-import { BsDiscord } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
 import { GoGear } from "react-icons/go";
 import { LuHistory } from "react-icons/lu";
@@ -20,15 +18,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import Image from "next/image";
 function Header() {
   const [openSidebar, setOpenSidebar] = useState(false);
 const [isLogin,setIsLogin]=useState(true)
   return (
     <div>
       {/* Desktop Navbar */}
-      <nav className="hidden fixed  w-full md:flex justify-around items-center bg-black text-white p-5 z-[30]">
+      <nav className="hidden fixed w-screen md:flex justify-between items-center bg-[#080808] text-white px-20 md:px-10 py-2 z-[30]">
+        <div className="flex gap-6 text-sm">
         <div>LINK.</div>
-        <div className="flex gap-10">
         {NAVLINKS_ITEMS.map(link=> <Link 
         href={link.link} 
         key={link.title}
@@ -36,9 +35,10 @@ const [isLogin,setIsLogin]=useState(true)
         {link.title}
         </Link>)}
         </div>
+        <button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer mr-40 max-lg:mr-10 max-md:mr-0">Gaming</button>
         <div className="flex gap-6 items-center">
-        <BsTelegram className="text-2xl cursor-pointer"/>
-        <BsDiscord className="text-2xl cursor-pointer"/>
+      <Image src="./telegram_icon.svg" height={20} width={20} alt='' className='cursor-pointer' />
+      <Image src="./discrod_icon.svg" height={20} width={20} alt='' className='cursor-pointer' />
         {
           isLogin?
           <div className="border-none outline-none pt-1">
@@ -51,7 +51,9 @@ const [isLogin,setIsLogin]=useState(true)
       <SheetDescription className="text-white pl-4">Username:</SheetDescription>
       <SheetDescription className="text-white pl-4">Email:</SheetDescription>
       <div className="w-full px-4 py-6 border-y-2 border-[#cf9f45] gap-4 flex flex-col">
+        <Link href="/Profile">
       <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><FaRegUser />Profile</SheetDescription>
+        </Link>
       <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><LuHistory />Order History</SheetDescription>
       <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><MdOutlineInventory />Inventory</SheetDescription>
       <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"><GrNodes />Node</SheetDescription>

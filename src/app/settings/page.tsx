@@ -2,11 +2,11 @@ import React from 'react'
 
 function Account() {
   return (
-    <section className=' bg-black rounded-2xl py-8 px-10 h-full w-full flex flex-col gap-6 text-white overflow-y-scroll relative overflow-x-hidden scrollHidden'>
+    <section className=' bg-black rounded-2xl py-8 px-10 max-md:px-1 h-full w-full flex flex-col gap-6 text-white overflow-y-scroll relative overflow-x-hidden scrollHidden'>
       <h1 className='text-2xl font-semibold'>Account:</h1>
-      <div className='w-full flex justify-between items-center'>
+      <div className='w-full flex max-sm:flex-col justify-between items-center'>
         <p>Public Profile Settings</p>
-        <div className='flex gap-2 items-center'>
+        <div className='flex gap-2 max-sm:flex-col items-center'>
             <button className='px-6 text-sm py-1 bg-blue-600 rounded-full hover:bg-opacity-70 duration-150'>Public</button>
             <button className='py-1 px-6 rounded-full border border-[#CD7F32] text-sm'>Anonymus</button>
         </div>

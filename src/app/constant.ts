@@ -3,7 +3,7 @@ export const NAVLINKS_ITEMS=[
     {title:"Team",link:"/Team"},
     {title:"Tokenomics",link:"/Tokenomics"},
     {title:"Nodes",link:"/Nodes"},
-    {title:"Whitepaper",link:"/"},
+    {title:"Whitepaper",link:"/whitepaper"},
 ]
 export const SETTING_ACCOUNT_LINKS=[
     {title:"Account",link:"/settings"},

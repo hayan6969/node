@@ -35,10 +35,10 @@ export default function Footer() {
   ];
   return (
       
-      <footer className="p-14 md:p-20 bg-black text-white w-full border-t-2 border-[#cf9f45] flex justify-between">
-        <div className="flex flex-col gap-2">
+      <footer className="p-14 md:p-20 max-sm:px-4 bg-black text-white w-full border-t-2 border-[#cf9f45] flex max-md:flex-col max-md:gap-4 justify-between">
+        <div className="flex max-md:w-full flex-col gap-2">
           <div>LOGO.</div>
-           <div className='flex gap-2'>
+           <div className='flex max-md:w-full gap-2'>
                     <FaXTwitter className="cursor-pointer" />
                     <FaYoutube className="cursor-pointer" />
                     <FaInstagram className="cursor-pointer" />
@@ -47,7 +47,7 @@ export default function Footer() {
                     <FaMediumM className="cursor-pointer"/>
                     </div>
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col max-md:w-full gap-6">
           <h6 className="font-semibold">Use cases</h6>
           <div className="flex flex-col gap-2">
             {CASES.map((link) => (
@@ -55,7 +55,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col max-md:w-full gap-6">
           <h6 className="font-semibold">Explore</h6>
           <div className="flex flex-col gap-2">
             {Explore.map((link) => (
@@ -63,7 +63,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 max-md:w-full">
           <h6 className="font-semibold">Resources</h6>
           <div className="flex flex-col gap-2">
             {Recources.map((link) => (

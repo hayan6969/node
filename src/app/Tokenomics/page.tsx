@@ -10,9 +10,9 @@ function Page() {
   return (
     <>
     <Header/>
-    <div className='bg-[#080808] text-white min-h-screen p-10 md:p-20 pb-0 md:pb-0'>
+    <div className='bg-[#080808] text-white min-h-screen p-10 md:p-20 max-sm:px-4 pb-0 md:pb-0'>
         <div className='flex items-center justify-center relative'>
-        <h1 className='mt-10 md:mt-20 text-[9vw] unbordered-white relative z-10 before:mt-2 before:absolute before:w-[85vw] before:rounded-xl boxShadow2 before:h-10 before:top-1/2 before:-translate-y-1/2 before:bg-[#CD7F32] flex justify-center items-center before:-z-10'>TOKENOMICS</h1>
+        <h1 className='mt-10 md:mt-20 text-[9vw] unbordered-white relative z-10 before:mt-2 before:absolute before:w-[85vw] before:rounded-xl boxShadow2 before:h-10 before:top-1/2 before:-translate-y-1/2 before:bg-[#CD7F32] max-sm:before:h-2 max-sm:before:-translate-y-2.5 flex justify-center items-center before:-z-10'>TOKENOMICS</h1>
         </div>
         <p className='para mt-10 md:mt-20'>
         At ASS I AM, we understand that a well-structured and  balanced tokenomic system is the cornerstone of success and sustainability. We are taking the necessary time to design a framework that not only meets today’s standards but sets new ones  
@@ -44,9 +44,9 @@ function Page() {
         Here’s what we’re focusing on:
         </p>
         <div className='flex flex-col gap-3 py-8'>
-          <p className="para flex gap-2 items-center"><FaCircle className="text-xs" /><b>Token Distribution:</b> Ensuring fairness and transparency in every aspect.</p>
-          <p className="para flex gap-2 items-center"><FaCircle className="text-xs" /><b>Utility</b>Creating real-wold and in-platform use cases for meaningful intrections.</p>
-          <p className="para flex gap-2 items-center"><FaCircle className="text-xs" /><b>Economic Impact:</b>Generating sustainable value accross the entire ASS I AM ecosystem.</p>
+          <p className="para flex gap-2 items-start"><FaCircle className="text-xs translate-y-1" /><b>Token Distribution:</b> Ensuring fairness and transparency in every aspect.</p>
+          <p className="para flex gap-2 items-start"><FaCircle className="text-xs" /><b className=' max-sm:mr-10 m-0'>Utility</b>Creating real-wold and in-platform use cases for meaningful intrections.</p>
+          <p className="para flex gap-2 items-start"><FaCircle className="text-xs" /><b className='max-sm:mr-5'>Economic Impact:</b>Generating sustainable value accross the entire ASS I AM ecosystem.</p>
         </div>
         <p className='para mt-5 '>
         Our goal is ambitious yet clear: to deliver a tokenomics system that is fair, transparent, and beneficial for everyone involved

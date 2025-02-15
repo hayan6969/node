@@ -55,7 +55,6 @@ function CardCarousel() {
           </div>
         ))}
       </div>
-      <StayConnected/>
     </div>
   );
 }
