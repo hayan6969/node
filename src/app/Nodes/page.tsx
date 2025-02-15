@@ -134,7 +134,7 @@ function page() {
                   impact!
                 </p>
                 <div>
-                  <Link href={"/BuyNode"}>
+                  <Link href={"/BuyNodes"}>
                     <button className="px-4 cursor-pointer py-1  bg-black border border-[#004AAD] rounded-full">
                       Get a Node
                     </button>
