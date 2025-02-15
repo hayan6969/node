@@ -28,7 +28,7 @@ function SettingNav() {
   }
 
   return (
-    <nav className=' bg-black rounded-2xl  p-6 h-full w-60 flex flex-col text-white overflow-y-scroll relative overflow-x-hidden scrollHidden'>
+    <nav className=' bg-black rounded-2xl  p-6 max-sm:px-2 h-full w-60 flex flex-col text-white overflow-y-scroll relative overflow-x-hidden scrollHidden'>
       <h1 className='text-3xl font-bold'>Settings</h1>
        <h3 className='text-2xl font-semibold pt-2 text-[#CD7F32]'>Account</h3>
       <div className='flex flex-col gap-1 px-3 py-2 text-sm'>

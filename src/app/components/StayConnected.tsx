@@ -14,8 +14,8 @@ function StayConnected() {
     <div className="w-full h-full bg-[#080808]  text-white pt-24 flex flex-col items-center">
       
       <h1 className='text-5xl font-semibold relative'>
-      <Image src='./Stay.svg' height='100' width='250' alt="" className="absolute bottom-2/3 -left-1/4 translate-x-1/4" />
-      <Image src='./Connected.svg' height='150' width='600' alt="" className="absolute top-full right-1/4 translate-x-1/4 scale-125" />
+      <Image src='./Stay.svg' height='100' width='250' alt="" className="absolute bottom-2/3 -left-1/4 translate-x-1/4 max-sm:translate-x-1/4" />
+      <Image src='./Connected.svg' height='150' width='600' alt="" className="absolute top-full right-1/4 translate-x-1/4 scale-125 max-sm:scale-110" />
          Stay Connected</h1>
       <div className="pt-52 flex flex-col gap-6">
         <div className="flex flex-col gap-2">

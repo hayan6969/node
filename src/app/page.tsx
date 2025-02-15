@@ -3,14 +3,13 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 import HeroPage from "./components/HeroPage"
 import Revolution from "./components/Revolution"
-import CardCarousel from "./components/ui/CardCarouse"
 
 function page() {
   return (
     <>
-
+<div className="w-screen overflow-x-hidden">
     <Header/>
-    {/* <div className=" h-[70vh] md:h-[90vh] md:pt-10 bg-blue-200 relative " >
+    <div className=" h-[70vh] md:h-[90vh] md:pt-10 bg-blue-200 relative" >
       <div className="absolute h-full w-full z-0 ">
 <div className="bg-red-[500] w-full h-full" >
 video will come here
@@ -27,22 +26,13 @@ video will come here
         </div>
         </div>
         
-        </div> */}
-    {/* <HeroPage/>
-    <Decentralization/>
-    <Revolution/> */}
-   <div>
-      <div className="bg-[#080808] w-screen h-[90vh]">
-        <div className="flex justify-center items-center h-full">
-          <div className="text-white text-center">
-            <h1 className="text-4xl font-bold">Home page</h1>
-            <p className="text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in odio nec ligula aliquam fringilla. Donec in odio nec ligula aliquam fringilla.</p>
-          </div>
         </div>
-      </div>
-   </div>
+    <HeroPage/>
+    <Decentralization/>
+    <Revolution/>
     {/* <CardCarousel/> */}
     <div className="w-screen px-20 bg-[#080808]"><Footer/></div>
+</div>
     </>
   )
 }

@@ -7,10 +7,10 @@ import Image from "next/image";
 
 function Decentralization() {
   return (
-    <div className=" overflow-x-hidden p-10 md:p-20 text-white bg-[#080808]  border-b border-2-gray-500 flex flex-col gap-12  relative before:w-96 before:h-96 before:blur-3xl before:absolute before:bg-blue-700 before:rounded-full before:bg-opacity-20 before:top-96 before:-translate-x-1/2 after:-right-0 after:translate-x-1/3 after:top-12 after:w-96 after:h-96 after:blur-3xl after:absolute after:bg-blue-700 after:rounded-full z-10 after:bg-opacity-20 after:mt-4">
-      <div className="flex flex-col gap-4">
+    <div className=" overflow-x-hidden p-10 md:p-20 max-sm:px-4 text-white bg-[#080808]  border-b border-2-gray-500 flex flex-col gap-12 relative before:w-96 before:h-96 before:blur-3xl before:absolute before:bg-blue-700 before:rounded-full before:bg-opacity-20 before:top-96 before:-translate-x-1/2 after:-right-0 after:translate-x-1/3 after:top-12 after:w-96 after:h-96 after:blur-3xl after:absolute after:bg-blue-700 after:rounded-full z-10 after:bg-opacity-20 after:mt-4">
+      <div className="flex flex-col items-start gap-4">
         <h1 className="heading capatilize relative">The power of 
-        <svg width="750" height="96" viewBox="0 0 929 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="auto" height="96" viewBox="0 0 929 96" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_3_54)">
 <mask id="path-1-outside-1_3_54" maskUnits="userSpaceOnUse" x="4" y="0" width="921" height="88" fill="black">
 <rect fill="white" x="4" width="921" height="88"/>

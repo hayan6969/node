@@ -7,19 +7,19 @@ function page() {
   return (
     <>
       <Header />
-      <div className="bg-[#080808] min-h-screen text-white pb-0 p">
+      <div className="bg-[#080808] min-h-screen text-white pb-0 overflow-hidden">
         {/* heropage */}
-        <div className="flex items-center justify-center h-screen pt-10 border-b border-white flex-col text-[10vw] leading-none text-[#CD7F32] font-bold relative">
-        <Image src='./star 2.svg' width={300} height={300} alt="star_icon " className=" absolute top-1/3 left-2/3 -translate-x-20" />
-        <Image src='./star 2.svg' width={200} height={200} alt="star_icon " className=" absolute top-1/4 left-1/4 -translate-x-20" />
-        <Image src='./star 2.svg' width={100} height={100} alt="star_icon " className=" absolute top-2/3 left-1/3 -translate-x-10" />
-        <span className="absolute before:absolute before:w-52 before:h-28 before:bg-white left-32 top-1/2 translate-y-12 before:rounded-lg before:top-full text-center para text-white flex justify-center items-center">Powerd by Coffee <br />Creativity, and <br />Collabration</span>
+        <div className="flex items-center justify-center h-screen pt-10 border-b border-white flex-col text-[10vw] max-md:text-[20vw] leading-none text-[#CD7F32] font-bold relative overflow-hidden">
+        <Image src='./star 2.svg' width={300} height={300} alt="star_icon " className=" absolute top-1/3 left-2/3 -translate-x-20 max-sm:scale-50 max-lg:-translate-x-8" />
+        <Image src='./star 2.svg' width={200} height={200} alt="star_icon " className=" absolute top-1/4 left-1/4 -translate-x-20 max-lg:-translate-x-28 max-sm:scale-75" />
+        <Image src='./star 2.svg' width={100} height={100} alt="star_icon " className=" absolute top-2/3 left-1/3 -translate-x-10 max-md:left-1/2 max-md:top-3/4" />
+        <span className="absolute before:absolute before:w-52 before:h-28 before:bg-white left-32 top-1/2 max-lg:bottom-0 max-lg:left-5 translate-y-12 before:rounded-lg before:top-full text-center para text-white flex justify-center items-center">Powerd by Coffee <br />Creativity, and <br />Collabration</span>
           <h1 className="font-semibold z-10">ABOUT</h1>
           <h1 className="font-semibold z-10">OUR</h1>
           <h1 className="font-semibold z-10">TEAM</h1>
         </div>
         {/* second Page */}
-        <div className="p-10 md:p-20 flex flex-col gap-10 md:gap-20 para border-b border-white ">
+        <div className="p-10 md:p-20 flex flex-col gap-10 md:gap-20 max-sm:px-4 para border-b border-white ">
           <div className="flex flex-col gap-8">
             <h1 className="heading">The Team – The Energy Behind ASS I AM</h1>
             <p>
@@ -52,7 +52,7 @@ function page() {
               fair, innovative, and community-driven.
             </p>
           </div>
-          <div className="w-full py-12 flex justify-center gap-44 items-center">
+          <div className="w-full py-12 flex max-md:flex-col justify-center gap-44 max-md:gap-12 items-center">
             <div className=" flex flex-col gap-8">
               <div className="w-60 h-60 bg-white rounded-full"></div>
               <div className="w-60 bg-blue-700 py-3 text-center rounded-xl heading">
@@ -79,7 +79,7 @@ function page() {
         {/* i am leaving third section fornnow  */}
 
         {/* fourth section */}
-        <div className="p-10 md:p-20 pb-0 md:pb-0">
+        <div className="p-10 md:p-20 max-sm:px-4 pb-0 md:pb-0">
           <h1 className="heading">We’re Growing – Be Part of It</h1>
           <p className="mt-10 para">
           What began as a small team is evolving into a thriving network of visionaries, technicians, creatives, and doers. Together, we’re shaping a team that knows exactly what it wants:
