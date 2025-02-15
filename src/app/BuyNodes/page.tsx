@@ -1,23 +1,24 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Image from "next/image";
 import Footer from "../components/Footer";
 import CrptContainer from "@/components/payments/crptContainer";
 import PayPalPayment from "@/components/payments/PayPalPayment";
 import { calculateTotalCost, getNodesInfo } from "@/lib/appwrite/paymentFunctions";
+import React, { useState, useEffect } from "react";
 
 function Page() {
   const [counter, setCounter] = useState(1);
   const [paymentMethod, setPaymentMethod] = useState<"crypto" | "paypal" | null>(null);
-  const [totalCost, setTotalCost] = useState(null);
+  // totalCost is a number or null while loading
+  const [totalCost, setTotalCost] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false); // ✅ Modal State
 
   // Agreement Checkboxes
   const [agreements, setAgreements] = useState({
     terms: false,
     refundPolicy: false,
-    acknowledgment: false
+    acknowledgment: false,
   });
 
   useEffect(() => {
@@ -30,8 +31,8 @@ function Page() {
   }, [counter]);
 
   const handleBuyNow = () => {
-    if(!localStorage.getItem("isLoggedIn")){
-      alert('Login before buying!');
+    if (!localStorage.getItem("isLoggedIn")) {
+      alert("Login before buying!");
       return;
     }
     if (!agreements.terms || !agreements.refundPolicy || !agreements.acknowledgment) {
@@ -103,7 +104,9 @@ function Page() {
                 <input
                   type="checkbox"
                   checked={agreements.terms}
-                  onChange={() => setAgreements({ ...agreements, terms: !agreements.terms })}
+                  onChange={() =>
+                    setAgreements({ ...agreements, terms: !agreements.terms })
+                  }
                 />{" "}
                 I agree to the **Terms & Conditions** (No refunds for digital goods).
               </label>
@@ -111,7 +114,9 @@ function Page() {
                 <input
                   type="checkbox"
                   checked={agreements.refundPolicy}
-                  onChange={() => setAgreements({ ...agreements, refundPolicy: !agreements.refundPolicy })}
+                  onChange={() =>
+                    setAgreements({ ...agreements, refundPolicy: !agreements.refundPolicy })
+                  }
                 />{" "}
                 I understand that **once the transaction is confirmed, it is final and non-reversible**.
               </label>
@@ -119,7 +124,9 @@ function Page() {
                 <input
                   type="checkbox"
                   checked={agreements.acknowledgment}
-                  onChange={() => setAgreements({ ...agreements, acknowledgment: !agreements.acknowledgment })}
+                  onChange={() =>
+                    setAgreements({ ...agreements, acknowledgment: !agreements.acknowledgment })
+                  }
                 />{" "}
                 I acknowledge that **I am fully responsible for my purchase and wallet security**.
               </label>
@@ -130,10 +137,18 @@ function Page() {
               <button
                 className="w-10/12 p-2 text-center rounded-2xl"
                 style={{
-                  backgroundColor: agreements.terms && agreements.refundPolicy && agreements.acknowledgment ? "#CD7F32" : "gray",
-                  cursor: agreements.terms && agreements.refundPolicy && agreements.acknowledgment ? "pointer" : "not-allowed",
+                  backgroundColor:
+                    agreements.terms && agreements.refundPolicy && agreements.acknowledgment
+                      ? "#CD7F32"
+                      : "gray",
+                  cursor:
+                    agreements.terms && agreements.refundPolicy && agreements.acknowledgment
+                      ? "pointer"
+                      : "not-allowed",
                 }}
-                disabled={!agreements.terms || !agreements.refundPolicy || !agreements.acknowledgment}
+                disabled={
+                  !agreements.terms || !agreements.refundPolicy || !agreements.acknowledgment
+                }
                 onClick={handleBuyNow}
               >
                 Buy Now
@@ -166,11 +181,18 @@ function Page() {
 
               {/* Payment Component */}
               <div className="mt-4">
-                {paymentMethod === "crypto" && <CrptContainer totalCost={totalCost} quantity={counter} />}
-                {paymentMethod === "paypal" && <PayPalPayment totalCost={totalCost} quantity={counter} />}
+                {paymentMethod === "crypto" && totalCost !== null && (
+                  <CrptContainer totalCost={totalCost} quantity={counter} />
+                )}
+                {paymentMethod === "paypal" && totalCost !== null && (
+                  <PayPalPayment totalCost={totalCost} quantity={counter} />
+                )}
               </div>
 
-              <button className="mt-4 w-full bg-gray-300 p-2 rounded-lg" onClick={() => setShowModal(false)}>
+              <button
+                className="mt-4 w-full bg-gray-300 p-2 rounded-lg"
+                onClick={() => setShowModal(false)}
+              >
                 Close
               </button>
             </div>

@@ -2,7 +2,8 @@
 
 import { useRef } from "react"
 import { motion, useScroll } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
+
 
 interface TimelineItemProps {
   number: string

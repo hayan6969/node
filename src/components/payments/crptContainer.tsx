@@ -1,16 +1,29 @@
-"use client"
-import { requestAccount } from '@/lib/ethereum';
-import { BrowserProvider, parseEther, parseUnits } from 'ethers';
-import React, { useState } from 'react';
-import { updateUserPayment, getNodesInfo,calculateTotalCost, convertUsdToEth, createPaymentDocument, updateNode, sendEmail } from "@/lib/appwrite/paymentFunctions";
+"use client";
+import { requestAccount } from "@/lib/ethereum";
+import { BrowserProvider } from "ethers";
+import React, { useState } from "react";
+import {
+  updateUserPayment,
+  getNodesInfo,
+  calculateTotalCost,
+  convertUsdToEth,
+  createPaymentDocument,
+  updateNode,
+  sendEmail,
+} from "@/lib/appwrite/paymentFunctions";
 
-const CrptContainer = ({totalCost,quantity}) => {
-  // const [err, setErr] = useState(null);
-  const [tsx, setTsx] = useState(null);
+// Define the props for CrptContainer
+interface CrptContainerProps {
+  totalCost: number;
+  quantity: number;
+}
 
+const CrptContainer: React.FC<CrptContainerProps> = ({ totalCost, quantity }) => {
+  // tsx holds the transaction hash
+  const [tsx, setTsx] = useState<string | null>(null);
   const [account, setAccount] = useState<string | null>(null);
 
-  //   MetaMask connection handler
+  // MetaMask connection handler
   const handleConnectMetaMask = async () => {
     try {
       const connectedAccount = await requestAccount();
@@ -22,75 +35,80 @@ const CrptContainer = ({totalCost,quantity}) => {
 
   async function startPayment() {
     try {
-      if (!window.ethereum) {
-        alert('please install a crypto wallet');
+      // Cast window to any to access ethereum
+      const ethereum = (window as any).ethereum;
+      if (!ethereum) {
+        alert("Please install a crypto wallet");
         return;
       }
-      // return;
-
-      ///// MAX OF 10 Nodes can be purchased per transaction
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      // console.log("Account access granted");
-      //  CONVERT
-      let amount = await convertUsdToEth(totalCost);
-      console.log("ether Address:", process.env.NEXT_PUBLIC_CRYPTO_ADDRESS);
-      console.log("ether Amount:", amount+"");
-      // provder
-      const provider = new BrowserProvider(window.ethereum);
+      await ethereum.request({ method: "eth_requestAccounts" });
+      
+      // Convert USD to ETH (ensure the returned amount is not null)
+      const amountResult = await convertUsdToEth(totalCost);
+      if (amountResult === null || amountResult === undefined) {
+        alert("Failed to convert USD to ETH");
+        return;
+      }
+      const amountStr = String(amountResult);
+      console.log("Ether Address:", process.env.NEXT_PUBLIC_CRYPTO_ADDRESS);
+      console.log("Ether Amount:", amountStr);
+      
+      // Create provider and signer
+      const provider = new BrowserProvider(ethereum);
       const signer = await provider.getSigner();
 
-
-      // transcation 
+      // Send transaction
       const transaction = await signer.sendTransaction({
         to: process.env.NEXT_PUBLIC_CRYPTO_ADDRESS,
-        value: BigInt(Math.round(parseFloat(amount) * 1e18)).toString()
+        value: BigInt(Math.round(parseFloat(amountStr) * 1e18)).toString(),
       });
       setTsx(transaction.hash);
-      console.log("Transaction sent: ", transaction.hash);
-      // confirm transcation first
-      const receipt = await transaction.wait(1); // Wait for at least 1 confirmation
-
-      if (receipt.status === 1) {
+      console.log("Transaction sent:", transaction.hash);
+      
+      // Wait for at least 1 confirmation
+      const receipt = await transaction.wait(1);
+      if (receipt && receipt.status === 1) {
         console.log("✅ Transaction confirmed:", receipt);
-        // ✅ Call createPaymentDocument after successful payment
+        // Create payment document, update node, and send confirmation email
         await createPaymentDocument(totalCost, quantity);
-        // upadate the Nodes First
         await updateNode(quantity);
         await sendEmail(
-          'PAYMENT SUCCESS',
+          "PAYMENT SUCCESS",
           `Your payment was successful! ✅
-        
-          - Total Cost: $${totalCost}
-          - Quantity Purchased: ${quantity}
-        
-          Thank you for your purchase!`,
+          
+- Total Cost: $${totalCost}
+- Quantity Purchased: ${quantity}
+          
+Thank you for your purchase!`,
           `<h2 style="color: green;">Payment Successful! ✅</h2>
            <p><strong>Total Cost:</strong> $${totalCost}</p>
            <p><strong>Quantity Purchased:</strong> ${quantity}</p>
            <p>Thank you for your purchase!</p>`
         );
-
         alert("Transaction SUCCESS!");
       } else {
         console.log("❌ Transaction failed:", receipt);
         alert("Transaction FAILED!");
       }
-    } catch (error) {
-      if (error.code === 'INSUFFICIENT_FUNDS' || error.message.toLowerCase().includes('insufficient funds')) {
-        console.log('Error: Insufficient funds for transaction.');
-        alert('Error: Insufficient funds for transaction.')
+    } catch (error: unknown) {
+      const err = error as Error;
+      // Check for insufficient funds error (casting to any for custom properties)
+      if (((err as any).code === "INSUFFICIENT_FUNDS") || err.message.toLowerCase().includes("insufficient funds")) {
+        console.log("Error: Insufficient funds for transaction.");
+        alert("Error: Insufficient funds for transaction.");
+      } else {
+        console.error("Transaction error:", err);
       }
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await startPayment();
   };
 
   return (
     <div>
-
       {account ? (
         <p>Connected to MetaMask: {account}</p>
       ) : (
@@ -102,15 +120,19 @@ const CrptContainer = ({totalCost,quantity}) => {
         </button>
       )}
       <h1>Send ETH</h1>
-      <form onSubmit={handleSubmit} className="inputContainer" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <form
+        onSubmit={handleSubmit}
+        className="inputContainer"
+        style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+      >
         <button
           type="submit"
           style={{
-            backgroundColor: 'blue',
-            padding: '8px',
-            borderRadius: '10px',
-            cursor: 'pointer',
-            margin: '10px 0 0 0'
+            backgroundColor: "blue",
+            padding: "8px",
+            borderRadius: "10px",
+            cursor: "pointer",
+            margin: "10px 0 0 0",
           }}
         >
           Send ETH
@@ -119,6 +141,5 @@ const CrptContainer = ({totalCost,quantity}) => {
     </div>
   );
 };
-
 
 export default CrptContainer;

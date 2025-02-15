@@ -1,13 +1,25 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
-import {createOrder, createPaymentDocument, sendEmail, sendPaymentEmail, updateNode} from '@/lib/appwrite/paymentFunctions';
+import {
+  createOrder,
+  createPaymentDocument,
+  sendEmail,
+  updateNode,
+} from "@/lib/appwrite/paymentFunctions";
 
-const PayPalPayment = ({ totalCost,quantity }) => {
-  const paypalRef = useRef(null);
+interface PayPalPaymentProps {
+  totalCost: number;
+  quantity: number;
+}
+
+const PayPalPayment: React.FC<PayPalPaymentProps> = ({ totalCost, quantity }) => {
+  const paypalRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const loadPayPalScript = () => {
-      if (window.paypal) {
+      // Use a type assertion for window.paypal
+      if ((window as any).paypal) {
         setLoaded(true);
         return;
       }
@@ -24,41 +36,41 @@ const PayPalPayment = ({ totalCost,quantity }) => {
   }, []);
 
   useEffect(() => {
-    if (loaded && window.paypal && paypalRef.current) {
-      paypalRef.current.innerHTML = ""; // Clear previous buttons before re-rendering
+    if (loaded && (window as any).paypal && paypalRef.current) {
+      // Clear previous buttons before rendering
+      paypalRef.current.innerHTML = "";
 
-      window.paypal
+      (window as any).paypal
         .Buttons({
           createOrder: async () => {
             try {
-              const orderId = await createOrder(totalCost,quantity);
-              return orderId
+              const orderId = await createOrder(totalCost, quantity);
+              return orderId;
             } catch (error) {
-              console.log('orderId Error:',error);
+              console.error("orderId Error:", error);
             }
           },
-          onApprove: async (data, actions) => {
+          onApprove: async (data: any, actions: any) => {
             try {
               const details = await actions.order.capture();
-              
-              // ✅ Call createPaymentDocument after successful payment
+              // Call createPaymentDocument after successful payment
               await createPaymentDocument(totalCost, quantity);
-              // upadate the Nodes First
+              // Update the node
               await updateNode(quantity);
               await sendEmail(
-                'PAYMENT SUCCESS',
+                "PAYMENT SUCCESS",
                 `Your payment was successful! ✅
               
-                - Total Cost: $${totalCost}
-                - Quantity Purchased: ${quantity}
+- Total Cost: $${totalCost}
+- Quantity Purchased: ${quantity}
               
-                Thank you for your purchase!`,
+Thank you for your purchase!`,
                 `<h2 style="color: green;">Payment Successful! ✅</h2>
                  <p><strong>Total Cost:</strong> $${totalCost}</p>
                  <p><strong>Quantity Purchased:</strong> ${quantity}</p>
                  <p>Thank you for your purchase!</p>`
               );
-              
+
               alert(`Transaction completed by ${details.payer.name.given_name}`);
               console.log("Transaction Details:", details);
             } catch (error) {
@@ -66,14 +78,14 @@ const PayPalPayment = ({ totalCost,quantity }) => {
               alert("Payment processing failed!");
             }
           },
-          onError: (err) => {
+          onError: (err: any) => {
             alert("PAYMENT ERROR!");
             console.error("PayPal Checkout Error:", err);
           },
         })
         .render(paypalRef.current);
     }
-  }, [loaded, totalCost]); // Update button when totalCost changes
+  }, [loaded, totalCost, quantity]);
 
   return <div ref={paypalRef}></div>;
 };

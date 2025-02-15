@@ -1,18 +1,28 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { registerWithEmailAndPass } from "@/lib/appwrite/userApi";
 import { sendEmail } from "@/lib/appwrite/paymentFunctions";
 
+// Define a type for our registration form inputs
+interface RegistrationFormInputs {
+  email: string;
+  password: string;
+  username: string;
+  firstname: string;
+  lastname: string;
+  checkBox: boolean;
+}
+
 function Page() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm<RegistrationFormInputs>();
   const [inputVisible, setInputVisible] = useState(false);
   const [formToggle, setFormToggle] = useState(true);
   const [continueDisable, setContinueDisable] = useState(true);
-  const [refer, setRefer] = useState(null);
+  const [refer, setRefer] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -22,11 +32,11 @@ function Page() {
         return;
       }
       const urlParams = new URLSearchParams(window.location.search);
-      setRefer(urlParams.get("refer") || null);
+      setRefer(urlParams.get("refer")); // This returns string or null
     }
   }, []);
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<RegistrationFormInputs> = async (data) => {
     try {
       const { email, password, username, firstname, lastname } = data;
       await registerWithEmailAndPass({ email, password, username, firstname, lastname, refer });
@@ -37,14 +47,14 @@ function Page() {
         'Welcome to Our Platform!',
         `Hello ${firstname}, 🎉
         
-        Thank you for registering with us! We're excited to have you on board.
-      
-        - Your registered email: ${email}
-      
-        If you have any questions, feel free to reach out.
-      
-        Best Regards,  
-        The Team`,
+Thank you for registering with us! We're excited to have you on board.
+
+- Your registered email: ${email}
+
+If you have any questions, feel free to reach out.
+
+Best Regards,  
+The Team`,
         `<h2 style="color: blue;">Welcome to Our Platform! 🎉</h2>
          <p>Hello <strong>${firstname}</strong>,</p>
          <p>Thank you for registering with us! We're excited to have you on board.</p>
@@ -69,60 +79,106 @@ function Page() {
           </div>
         )}
         <div className="text-xl font-semibold">logo</div>
-        <div><h1>REFER: {refer}</h1></div>
+        <div>
+          <h1>REFER: {refer}</h1>
+        </div>
         <div className="flex flex-col text-center pt-12">
           <h3 className="text-5xl font-bold">Welcome</h3>
-          <p className="heading pt-2"> Register to continue to <span className="text-[#cf9f45]">ASS I AM</span></p>
+          <p className="heading pt-2">
+            Register to continue to <span className="text-[#cf9f45]">ASS I AM</span>
+          </p>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           {formToggle ? (
             <div className="flex flex-col py-10 gap-6 w-full px-44">
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="font-medium text-lg">Email*</label>
-                <input type="email" placeholder="eg.xxxxx@gmail.com" className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none" {...register("email", { required: true })} />
+                <input
+                  type="email"
+                  placeholder="eg.xxxxx@gmail.com"
+                  className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
+                  {...register("email", { required: true })}
+                />
                 {errors.email && <span>This field is required</span>}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="password" className="font-medium text-lg">Password*</label>
                 <div className="border border-slate-500 rounded-lg flex items-center">
-                  <input type={inputVisible ? "text" : "password"} className="w-full px-3 py-2 bg-transparent outline-none" {...register("password", { required: true })} />
+                  <input
+                    type={inputVisible ? "text" : "password"}
+                    className="w-full px-3 py-2 bg-transparent outline-none"
+                    {...register("password", { required: true })}
+                  />
                   <span className="mx-4 text-xl cursor-pointer" onClick={() => setInputVisible(!inputVisible)}>
                     {inputVisible ? <GoEye /> : <GoEyeClosed />}
                   </span>
                 </div>
               </div>
               <div className="w-full flex gap-4 items-center py-2">
-                <input type="checkbox" className="w-4 h-4 cursor-pointer" {...register("checkBox", { required: true })} onChange={e => setContinueDisable(!e.target.checked)} />
+                <input
+                  type="checkbox"
+                  className="w-4 h-4 cursor-pointer"
+                  {...register("checkBox", { required: true })}
+                  onChange={e => setContinueDisable(!e.target.checked)}
+                />
                 <p className="para">I agree to the Terms and Conditions</p>
               </div>
               <div className="w-full flex justify-center">
-                <button className={`${continueDisable ? "opacity-70" : "opacity-100"} bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center py-2 cursor-pointer mx-6 mt-12`} onClick={() => setFormToggle(false)} disabled={continueDisable}>Continue</button>
+                <button
+                  className={`${continueDisable ? "opacity-70" : "opacity-100"} bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center py-2 cursor-pointer mx-6 mt-12`}
+                  onClick={() => setFormToggle(false)}
+                  disabled={continueDisable}
+                >
+                  Continue
+                </button>
               </div>
             </div>
           ) : (
             <div className="flex flex-col py-10 gap-6 w-full px-44">
               <div className="flex flex-col gap-2">
                 <label htmlFor="username" className="font-medium text-lg">Username*</label>
-                <input type="text" className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none" {...register("username", { required: true })} />
+                <input
+                  type="text"
+                  className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
+                  {...register("username", { required: true })}
+                />
                 {errors.username && <span>This field is required</span>}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="firstname" className="font-medium text-lg">First Name*</label>
-                <input type="text" className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none" {...register("firstname", { required: true })} />
+                <input
+                  type="text"
+                  className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
+                  {...register("firstname", { required: true })}
+                />
                 {errors.firstname && <span>This field is required</span>}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="lastname" className="font-medium text-lg">Last Name*</label>
-                <input type="text" className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none" {...register("lastname", { required: true })} />
+                <input
+                  type="text"
+                  className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
+                  {...register("lastname", { required: true })}
+                />
                 {errors.lastname && <span>This field is required</span>}
               </div>
-              <input type="submit" value="Sign Up" className="bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center py-2 cursor-pointer mt-12" />
+              <input
+                type="submit"
+                value="Sign Up"
+                className="bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center py-2 cursor-pointer mt-12"
+              />
             </div>
           )}
         </form>
-        <p className="para text-center">Already have an account? <Link href="/login" className="text-blue-700 cursor-pointer">Login</Link></p>
+        <p className="para text-center">
+          Already have an account?{" "}
+          <Link href="/login" className="text-blue-700 cursor-pointer">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );
 }
+
 export default Page;

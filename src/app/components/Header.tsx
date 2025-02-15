@@ -41,8 +41,8 @@ function Header() {
         const currentUser = await getCurrentUser();
         if (currentUser) {
           setIsLogin(true);
-          // Assuming currentUser matches the User interface.
-          setUser(currentUser);
+          // Using a type assertion to tell TypeScript that currentUser matches User.
+          setUser(currentUser as unknown as User);
         } else {
           setIsLogin(false);
         }
