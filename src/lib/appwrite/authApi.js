@@ -1,5 +1,6 @@
 import { ID, Query } from "appwrite";
 import { account, databases ,OAuthProvider} from "./appwrite";
+import { sendEmail } from "./paymentFunctions";
 
 export const GoogleLogin = async () => {
   try {
@@ -37,7 +38,7 @@ export const GoogleLogin = async () => {
                       // console.log('auth user:',user);
                       // console.log('documets:',existingUsers.documents);
                       
-                      alert('CHECK USER DB')
+                      // alert('CHECK USER DB')
                       if (existingUsers.total === 0) {
                           console.log("User not found in DB. Adding now...");
 
@@ -52,6 +53,25 @@ export const GoogleLogin = async () => {
                                   userId: user.$id
                               }
                           );
+                              await sendEmail(
+                                  'Welcome to Our Platform!',
+                                  `Hello ${user.name}, 🎉
+                                  
+                          Thank you for registering with us! We're excited to have you on board.
+                          
+                          - Your registered email: ${user.email}
+                          
+                          If you have any questions, feel free to reach out.
+                          
+                          Best Regards,  
+                          The Team`,
+                                  `<h2 style="color: blue;">Welcome to Our Platform! 🎉</h2>
+                                   <p>Hello <strong>${user.name}</strong>,</p>
+                                   <p>Thank you for registering with us! We're excited to have you on board.</p>
+                                   <p><strong>Your registered email:</strong> ${user.email}</p>
+                                   <p>If you have any questions, feel free to reach out.</p>
+                                   <p>Best Regards,<br/>The Team</p>`
+                                );
 
                           console.log("User added to DB successfully.");
                       } else {
