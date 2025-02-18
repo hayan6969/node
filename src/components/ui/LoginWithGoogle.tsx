@@ -1,10 +1,14 @@
 import React from 'react';
 import { GoogleLogin } from '@/lib/appwrite/authApi';
 
-const LoginWithGoogle = ({register}) => {
+interface LoginWithGoogleProps {
+    register: any;
+}
+
+const LoginWithGoogle: React.FC<LoginWithGoogleProps> = ({ register }) => {
 
     function handleLogin() {
-        GoogleLogin(register);
+        GoogleLogin();
     }
 
     return (
