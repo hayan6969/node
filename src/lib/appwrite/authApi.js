@@ -1,5 +1,82 @@
 import { ID, Query } from "appwrite";
-import { account, databases } from "./appwrite";
+import { account, databases ,OAuthProvider} from "./appwrite";
+
+export const GoogleLogin = async () => {
+  try {
+      console.log('Starting Google login in a popup...');
+
+      // Open a popup for OAuth login
+      const popup = window.open(
+          `https://cloud.appwrite.io/v1/account/sessions/oauth2/google?project=${process.env.NEXT_PUBLIC_PROJECT_ID}&success=${process.env.NEXT_PUBLIC_DOMAIN}/auth-callback&failure=${process.env.NEXT_PUBLIC_DOMAIN}/login`,
+          "GoogleLoginPopup",
+          "width=500,height=600"
+      );
+
+      if (!popup) {
+          alert("Popup blocked! Please allow popups and try again.");
+          return;
+      }
+
+      // Polling for the popup to close and then retrieve the session
+      const checkPopup = setInterval(async () => {
+          if (popup.closed) {
+              clearInterval(checkPopup);
+              console.log("Popup closed. Checking session...");
+
+              try {
+                  const user = await account.get();
+                  if (user && user.$id) {
+                      console.log("Authenticated User:", user);
+
+                      // ✅ Check if user already exists in the database
+                      const existingUsers = await databases.listDocuments(
+                          process.env.NEXT_PUBLIC_DB_ID,
+                          process.env.NEXT_PUBLIC_USERS_COLLECTION,
+                          [Query.equal("email", user.email)]
+                      );
+                      // console.log('auth user:',user);
+                      // console.log('documets:',existingUsers.documents);
+                      
+                      alert('CHECK USER DB')
+                      if (existingUsers.total === 0) {
+                          console.log("User not found in DB. Adding now...");
+
+                          // Add user to the database
+                          await databases.createDocument(
+                              process.env.NEXT_PUBLIC_DB_ID,
+                              process.env.NEXT_PUBLIC_USERS_COLLECTION,
+                              ID.unique(),
+                              {
+                                  email: user.email,
+                                  first_name: user.name,
+                                  userId: user.$id
+                              }
+                          );
+
+                          console.log("User added to DB successfully.");
+                      } else {
+                          console.log("User already exists in DB. Skipping insert.");
+                      }
+
+                      // Store login state
+                      localStorage.setItem("isLoggedIn", "true");
+                      // alert("Login successful!");
+
+                      // Redirect after login
+                      window.location.href = process.env.NEXT_PUBLIC_DOMAIN;
+                  }
+              } catch (error) {
+                  console.error("Failed to retrieve session:", error);
+              }
+          }
+      }, 1000); // Check every second
+
+  } catch (error) {
+      console.error("Login Error:", error);
+      alert("An error occurred. Please try again.");
+  }
+};
+
 
 export const enableAuth = async (authType) => {
     try {

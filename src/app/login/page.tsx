@@ -1,4 +1,5 @@
 "use client";
+import LoginWithGoogle from "@/components/ui/LoginWithGoogle";
 import { 
   loginEmailAndPass, 
   sendEmailOTP, 
@@ -173,6 +174,7 @@ function Page() {
             </div>
           </div>
         </form>
+        <LoginWithGoogle  register={false}/>
         <p className="para text-center">
           Create a new account <br />
           <Link href="/register" className="text-blue-700 cursor-pointer">

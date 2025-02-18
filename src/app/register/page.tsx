@@ -6,6 +6,7 @@ import { GoEye, GoEyeClosed } from "react-icons/go";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { registerWithEmailAndPass } from "@/lib/appwrite/userApi";
 import { sendEmail } from "@/lib/appwrite/paymentFunctions";
+import LoginWithGoogle from "@/components/ui/LoginWithGoogle";
 
 // Define a type for our registration form inputs
 interface RegistrationFormInputs {
@@ -170,6 +171,7 @@ The Team`,
             </div>
           )}
         </form>
+        <LoginWithGoogle  register={true}/>
         <p className="para text-center">
           Already have an account?{" "}
           <Link href="/login" className="text-blue-700 cursor-pointer">
