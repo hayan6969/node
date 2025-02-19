@@ -70,6 +70,7 @@
 }
 body{
   width: 100vw;
+ background-color: #080808;
   overflow-x: hidden;
 }
 .scrollHidden{
@@ -229,4 +230,14 @@ body{
     rgba(0, 0, 0, 1) 100%
   );
 }
-
+.custom-border-1{
+  box-shadow: -4.5px -4.5px 3px 0.1px #004bad72;
+  z-index: 0;
+}
+.custom-border-2{
+  box-shadow: 4.5px 4.5px 3px 0.1px #004bad72;
+  z-index: 0;
+}
+.zIndex{
+z-index: 1;
+}

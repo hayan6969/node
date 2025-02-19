@@ -31,7 +31,7 @@ video will come here
     <Decentralization/>
     <Revolution/>
     {/* <CardCarousel/> */}
-    <div className="w-screen px-20 bg-[#080808]"><Footer/></div>
+    <div className="w-screen px-20 max-md:px-10 max-sm:px-4 bg-[#080808]"><Footer/></div>
 </div>
     </>
   )

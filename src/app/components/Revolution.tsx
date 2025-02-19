@@ -25,7 +25,7 @@ function Revolution() {
           performance.
         </p>
         <div className="flex flex-col gap-4 w-full py-4 relative">
-          <span className="absolute right-0 max-lg:w-1/2">
+          <span className="absolute right-0 max-lg:w-1/2 max-sm:hidden">
           <svg width="auto" height="79" viewBox="0 0 539 79" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g opacity="0.3">
 <mask id="path-1-outside-1_584_2069" maskUnits="userSpaceOnUse" x="0" y="0" width="539" height="79" fill="black">
