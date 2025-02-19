@@ -8,6 +8,8 @@ import {
   uploadDocument,
   getCurrentUser,
 } from "@/lib/appwrite/userApi";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 // Define an interface for the job data
 interface Job {
@@ -158,41 +160,26 @@ const Page = () => {
 
   return (
     <>
+    <Header/>
       {/* Job Details Section */}
       <div
-        style={{
-          padding: "20px",
-          borderBottom: "2px solid #ddd",
-          maxWidth: "800px",
-          margin: "20px auto",
-        }}
-      >
+      className="text-white p-5 border-b-2 border-[#ddd] w-[800px] max-md:w-full my-5 mx-[auto] pt-16">
         <h1 style={{ fontSize: "28px", marginBottom: "10px" }}>
           Job Details
         </h1>
-        <h2 style={{ fontSize: "22px", color: "#333" }}>
+        <h2 className="text-[#CD7F32] text-2xl">
           {job?.title}
         </h2>
-        <p style={{ fontSize: "16px", color: "#555" }}>
+        <p className="text-base text-[#555]">
           {job?.description}
         </p>
-        <span style={{ fontSize: "14px", color: "#777" }}>
+        <span className="text-sm text-[#777]">
           Posted on:{" "}
           {job ? new Date(job.$createdAt).toLocaleDateString() : ""}
         </span>
       </div>
-
-      {/* Job Application Form */}
       <div
-        style={{
-          maxWidth: "500px",
-          margin: "20px auto",
-          padding: "20px",
-          border: "2px solid #ddd",
-          borderRadius: "10px",
-          background: "#f9f9f9",
-        }}
-      >
+      className="max-w-[500px] my-5 mx-[auto] p-5 border-2 border-[#ddd] rounded-lg">
         <h2 style={{ fontSize: "22px", marginBottom: "15px" }}>
           Apply for this Job
         </h2>
@@ -204,11 +191,7 @@ const Page = () => {
 
         <form
           onSubmit={handleSubmit}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
+          className="text-white flex flex-col gap-3"
         >
           {/* Required Fields */}
           <input
@@ -218,12 +201,8 @@ const Page = () => {
             value={formData.first_name}
             onChange={handleChange}
             required
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
-          />
+            className="bg-transparent p-3 border border-[#ccc] rounded"
+            />
           <input
             type="text"
             name="last_name"
@@ -231,11 +210,7 @@ const Page = () => {
             value={formData.last_name}
             onChange={handleChange}
             required
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
+             className="bg-transparent p-3 border border-[#ccc] rounded"
           />
           <input
             type="email"
@@ -244,11 +219,7 @@ const Page = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
+          className="bg-transparent p-3 border border-[#ccc] rounded"
           />
           <input
             type="tel"
@@ -257,11 +228,7 @@ const Page = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
+             className="bg-transparent p-3 border border-[#ccc] rounded"
           />
           <textarea
             name="why_us"
@@ -269,12 +236,7 @@ const Page = () => {
             value={formData.why_us}
             onChange={handleChange}
             required
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              minHeight: "80px",
-            }}
+        className="bg-transparent p-3 border border-[#ccc] rounded"
           />
 
           {/* Optional Fields */}
@@ -284,11 +246,7 @@ const Page = () => {
             placeholder="Discord ID (optional)"
             value={formData.discord_id}
             onChange={handleChange}
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
+          className="bg-transparent p-3 border border-[#ccc] rounded"
           />
           <input
             type="url"
@@ -296,11 +254,7 @@ const Page = () => {
             placeholder="LinkedIn Profile (optional)"
             value={formData.linkedin}
             onChange={handleChange}
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
+            className="bg-transparent p-3 border border-[#ccc] rounded"
           />
           <input
             type="url"
@@ -308,11 +262,7 @@ const Page = () => {
             placeholder="Portfolio/Website (optional)"
             value={formData.website}
             onChange={handleChange}
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
+            className="bg-transparent p-3 border border-[#ccc] rounded"
           />
 
           {/* File Upload */}
@@ -321,28 +271,22 @@ const Page = () => {
             name="document"
             onChange={handleFileChange}
             required
-            style={{
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-            }}
+            className="bg-transparent p-3 border border-[#ccc] rounded"
           />
 
           {/* Submit Button */}
+          <div className="w-full flex justify-center">
           <button
             type="submit"
-            style={{
-              cursor: "pointer",
-              padding: "10px",
-              backgroundColor: "black",
-              color: "white",
-              borderRadius: "5px",
-              fontSize: "16px",
-            }}
-          >
+            className="cursor-pointer p-3 bg-black text-white text-base border border-[#049ABC] rounded-full"
+            >
             {isSubmitting ? "Submitting..." : "Submit Application"}
           </button>
+            </div>
         </form>
+      </div>
+      <div className="w-screen p-10 md:p-20 max-sm:p-4 pb-4 md:pb-0 max-sm:pb-0">
+      <Footer/>
       </div>
     </>
   );

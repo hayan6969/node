@@ -86,10 +86,12 @@ function Page() {
     }
   };
 
+  
+
   return (
-    <div className="p-10 md:p-20 bg-black min-h-[100vh] text-white flex flex-col items-center justify-center gap-8">
+    <div className="p-10 md:p-20 max-sm:px-4 bg-black min-h-[100vh] text-white flex flex-col items-center justify-center gap-8">
       <h1 className="text-6xl font-bold">Login</h1>
-      <div className="w-full h-full p-6 rounded-xl bg-gradient-to-r from-[#2B160A] to-[#1A2145] flex flex-col items-center border border-[#004AAD] relative">
+      <div className="w-full h-full p-6 max-sm:px-2 rounded-xl bg-gradient-to-r from-[#2B160A] to-[#1A2145] flex flex-col items-center border border-[#004AAD] relative">
         <div className="text-xl font-semibold">logo</div>
         <div className="flex flex-col text-center pt-12">
           <h3 className="text-5xl font-bold">Welcome</h3>
@@ -99,7 +101,7 @@ function Page() {
         </div>
         {errorMessage && <p className="text-red-500 py-2">{errorMessage}</p>}
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          <div className="flex flex-col py-10 gap-6 w-full px-44">
+          <div className="flex flex-col py-10 gap-6 w-full px-44 max-lg:px-32 max-md:px-16 max-sm:px-0">
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="font-medium text-lg">
                 Email*
