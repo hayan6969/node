@@ -41,6 +41,9 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+  .playfair {
+    font-family: var(--font-playfair), serif;
+  }
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;

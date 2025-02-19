@@ -52,7 +52,7 @@ function Roadmap() {
                      transition={{ duration: 1.2, delay: 0.5 }}
                     className="text-6xl font-bold relative bg-[#cf9f45]   overflow-visible w-12 text-center bg-clip-text text-transparent"
                   >
-                    <span>1</span>
+                    <span className="playfair ">1</span>
                   </motion.div>
                 </div>
                 <motion.p
@@ -87,7 +87,7 @@ function Roadmap() {
                      transition={{ duration: 1.2, delay: 0.5 }}
                     className="text-6xl font-bold relative bg-[#cf9f45]   overflow-visible w-12 text-center bg-clip-text text-transparent"
                   >
-                    <span>2</span>
+                    <span className="playfair ">2</span>
                   </motion.div>
                 </div>
                 <motion.p
@@ -126,7 +126,7 @@ function Roadmap() {
                    transition={{ duration: 1.2, delay: 0.5 }}
                     className="text-6xl font-bold relative bg-[#cf9f45]   overflow-visible w-12 text-center bg-clip-text text-transparent"
                   >
-                    <span>3</span>
+                    <span className="playfair ">3</span>
                   </motion.div>
                 </div>
                 <motion.p
@@ -161,7 +161,7 @@ function Roadmap() {
                  transition={{ duration: 1.2, delay: 0.5 }}
                     className="text-6xl font-bold relative bg-[#cf9f45]   overflow-visible w-12 text-center bg-clip-text text-transparent"
                   >
-                    <span>4</span>
+                    <span className="playfair ">4</span>
                   </motion.div>
                 </div>
                 <motion.p
@@ -201,7 +201,7 @@ function Roadmap() {
             transition={{ duration: 1.2, delay: 0.5 }}
                     className="text-6xl font-bold relative bg-[#cf9f45]   overflow-visible w-12 text-center bg-clip-text text-transparent"
                   >
-                    <span>5</span>
+                    <span className="playfair ">5</span>
                   </motion.div>
                 </div>
                 <motion.p
