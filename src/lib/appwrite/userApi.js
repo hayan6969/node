@@ -145,7 +145,7 @@ export const getCurrentUser = async () => {
     // Get logged-in user
     const user = await account.get();
     // console.log('production',process.env.NEXT_PUBLIC_DB_ID);
-    console.log('cccccccc',user.$id);
+    // console.log('cccccccc',user.$id);
     
     // if (!user) return null; // If no user, return null
 
