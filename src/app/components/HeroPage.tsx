@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Slider } from "./slider";
 
 function HeroPage() {
 
@@ -212,7 +213,8 @@ function HeroPage() {
             <h1 className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl">
               What Makes Us Unique
             </h1>
-          <div className="flex flex-col gap-8 py-8">
+            <Slider/>
+          {/* <div className="flex flex-col gap-8 py-8">
             <div className="flex gap-8 ">
               <div className="flex gap-8">
               <div className="w-64 h-20 rounded-tl-3xl rounded-br-3xl flex justify-center items-center text-5xl unbordered-white text-opacity-70 bg-[url('https://images.unsplash.com/photo-1623621461302-e6b5236629cb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1lbiUyMGhvbGRpbiUyMGNhbWVyYXxlbnwwfHwwfHx8MA%3D%3D')] bg-center bg-cover relative before:absolute before:w-full before:h-full before:bg-black before:bg-opacity-30">VIDEOS</div>
@@ -227,7 +229,7 @@ function HeroPage() {
               <div className="w-64 h-20 rounded-tl-3xl rounded-br-3xl flex justify-center items-center text-5xl unbordered-white text-opacity-70 bg-[url('https://plus.unsplash.com/premium_photo-1710961233810-5350d81d4b20?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TGl2ZWNhbXxlbnwwfHwwfHx8MA%3D%3D')] bg-center bg-cover relative before:absolute before:w-full before:h-full before:bg-black before:bg-opacity-30">LIVECAM</div>
               <div className="w-64 h-20 rounded-tl-3xl rounded-br-3xl flex justify-center items-center text-5xl unbordered-white text-opacity-70 bg-[url('https://images.unsplash.com/photo-1615680022647-99c397cbcaea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGdhbWVzfGVufDB8fDB8fHww')] bg-center bg-cover relative before:absolute before:w-full before:h-full before:bg-black before:bg-opacity-30">GAMES</div>
             </div>
-          </div>
+          </div> */}
           </div>
           <div className="mt-20 lg:mb-20 flex flex-col gap-4 ">
             <h1 className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl">

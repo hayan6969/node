@@ -60,8 +60,8 @@ function Header() {
   return (
     <div>
       {/* Desktop Navbar */}
-      <nav className="hidden fixed w-screen md:flex justify-between items-center bg-[#080808] text-white px-20 md:px-10 py-2 z-[30] top-0">
-        <div className="flex gap-6 text-sm">
+      <nav className="hidden fixed w-screen md:flex justify-center items-center bg-[#080808] text-white px-20 md:px-10 py-2 z-[30] top-0">
+        <div className="flex gap-2 justify-between text-sm w-full">
           <div>LINK.</div>
           {NAVLINKS_ITEMS.map((link) => (
             <Link href={link.link} key={link.title}>
@@ -69,10 +69,12 @@ function Header() {
             </Link>
           ))}
         </div>
-        <button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer mr-40 max-lg:mr-10 max-md:mr-0">
+        <div className="w-full flex justify-center">
+        <button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer">
           Gaming
         </button>
-        <div className="flex gap-6 items-center">
+        </div>
+        <div className="flex gap-6 items-center w-full justify-end">
         <svg width="20" height="auto" viewBox="0 0 29 71" fill="none" xmlns="http://www.w3.org/2000/svg" href="http://www.w3.org/1999/xlink" className="cursor-pointer">
 <rect width="29" height="71" fill="url(#pattern0_486_1069)"/>
 <defs>
@@ -97,7 +99,7 @@ function Header() {
             <div className="pt-1">
               <Sheet>
                 <SheetTrigger>
-                  <FaRegUserCircle className="cursor-pointer border-none outline-none scale-150 bg-black" />
+                  <FaRegUserCircle className="cursor-pointer border-none outline-none scale-150 -translate-x-1 bg-black" />
                 </SheetTrigger>
                 <SheetContent className="bg-[#262626] text-white before:absolute before:w-full border-none before:left-1/2 before:-translate-x-1/2 px-0 before:h-24 before:rounded-b-3xl before:bg-[#004AAD] before:top-0 pt-32">
                   <FaRegUser className="text-5xl cursor-pointer absolute top-16 left-6 text-white bg-[#004AAD] rounded-full border-4 border-white" />
@@ -115,7 +117,7 @@ function Header() {
                       <Link href="/Profile">
                         <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                           <FaRegUser /> Profile
-                        </SheetDescription>
+                        </SheetDescription>2
                       </Link>
                       <SheetDescription
                         onClick={() =>
