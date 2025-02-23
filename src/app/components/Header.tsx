@@ -117,7 +117,7 @@ function Header() {
                       <Link href="/Profile">
                         <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                           <FaRegUser /> Profile
-                        </SheetDescription>2
+                        </SheetDescription>
                       </Link>
                       <SheetDescription
                         onClick={() =>
