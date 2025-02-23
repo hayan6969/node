@@ -45,65 +45,57 @@ const JobCreate = () => {
 
 
     return (
-    <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto", backgroundColor: "#f8f9fa", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
+    <div className='px-5 py-2 max-w-[600px] my-0 mx-auto rounded-[8px] shadow-[0 4px 8px rgba(0, 0, 0, 0.1)]'>
       <h1 style={{ fontSize: "1.8rem", fontWeight: "bold", marginBottom: "20px", textAlign: "center" }}>Create Job</h1>
 
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "16px" }}>
-          <label htmlFor="title" style={{ fontSize: "1rem", fontWeight: "500", color: "#333" }}>Job Title</label>
+          <label htmlFor="title" className='text-base font-medium text-white'>Job Title</label>
           <input
             type="text"
             id="title"
             name="title"
             required
-            style={{ width: "100%", padding: "12px", borderRadius: "4px", border: "1px solid #ccc", fontSize: "1rem" }}
+            className='w-full p-3 rounded-sm border text-base'
           />
         </div>
 
         <div style={{ marginBottom: "16px" }}>
-          <label htmlFor="description" style={{ fontSize: "1rem", fontWeight: "500", color: "#333" }}>Job Description</label>
+          <label htmlFor="description" className='text-base font-medium text-white'>Job Description</label>
           <textarea
             id="description"
             name="description"
             required
-            style={{ width: "100%", padding: "12px", borderRadius: "4px", border: "1px solid #ccc", fontSize: "1rem" }}
+            className='w-full p-3 rounded-sm border text-base'
           ></textarea>
         </div>
 
         <div style={{ marginBottom: "16px" }}>
-          <label htmlFor="responsibilities" style={{ fontSize: "1rem", fontWeight: "500", color: "#333" }}>Responsibilities</label>
+          <label htmlFor="responsibilities" className='text-base font-medium text-white'>Responsibilities</label>
           <textarea
             id="responsibilities"
             name="responsibilities"
             required
-            style={{ width: "100%", padding: "12px", borderRadius: "4px", border: "1px solid #ccc", fontSize: "1rem" }}
+            className='w-full p-3 rounded-sm border text-base'
           ></textarea>
         </div>
 
         <div style={{ marginBottom: "16px" }}>
-          <label htmlFor="skills" style={{ fontSize: "1rem", fontWeight: "500", color: "#333" }}>Skills & Qualifications</label>
+          <label htmlFor="skills" className='text-base font-medium text-white'>Skills & Qualifications</label>
           {skills.map((skill, index) => (
             <div key={index} style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
               <input
                 type="text"
                 value={skill}
                 onChange={(e) => handleSkillChange(index, e)}
-                style={{ width: "100%", padding: "12px", borderRadius: "4px", border: "1px solid #ccc", fontSize: "1rem" }}
+                className='w-full p-3 rounded-sm border text-base'
               />
             </div>
           ))}
           <button
             type="button"
             onClick={addSkillField}
-            style={{
-              padding: "8px 16px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              fontSize: "1rem",
-              cursor: "pointer",
-            }}
+            className='px-4 py-2 border border-[#004AAD] text-white rounded-sm cursor-pointer hover:bg-opacity-50 hover:bg-[#004AAD]'
           >
             Add Another Skill
           </button>
@@ -111,17 +103,7 @@ const JobCreate = () => {
 
         <div style={{ marginBottom: "16px" }}>
           <button
-            type="submit"
-            style={{
-              width: "100%",
-              padding: "12px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              fontSize: "1rem",
-              cursor: "pointer",
-            }}
+className='px-4 py-2 border border-[#004AAD] text-white rounded-sm cursor-pointer hover:bg-opacity-50 hover:bg-[#004AAD]'
             disabled={loading}
           >
             {loading ? (
