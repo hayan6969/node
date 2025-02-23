@@ -9,13 +9,13 @@ function page() {
     <>
 <div className="w-screen overflow-x-hidden">
     <Header/>
-    <div className=" h-[70vh] md:h-[90vh] md:pt-10 bg-blue-200 relative" >
+    <div className=" h-[70vh] md:h-[90vh] md:pt-10 bg-blue-200 relative w-screen" >
       <div className="absolute h-full w-full z-0 ">
 <div className="bg-red-[500] w-full h-full" >
 video will come here
 </div>
 </div>
-<div className="z-10 relative  text-white  flex  items-center justify-center ">
+<div className="z-10 relative text-white flex items-center justify-center w-full">
 <div className="flex gap-10 mt-10">
 <button className="primary_bg_color px-5 py-2 rounded-lg ">
           Login
