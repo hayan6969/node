@@ -131,7 +131,7 @@ export const updateUserData = async (updatedData) => {
     );
 
     // console.log('User data updated successfully:', response);
-    alert('DATA UPDATED!')
+    
     return response; // Optionally return the updated document
   } catch (error) {
     // console.log('User data update error:', error);

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner"
+
+
+
 
 // Configure DM Sans (e.g., for body copy)
 const dmSans = DM_Sans({
@@ -30,6 +34,7 @@ export default function RootLayout({
       <body className={`${dmSans.variable} ${playfair.variable} antialiased`}>
         {children}
       </body>
+      <Toaster />
     </html>
   );
 }

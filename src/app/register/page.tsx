@@ -7,6 +7,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { registerWithEmailAndPass, getCurrentUser } from "@/lib/appwrite/userApi";
 import { sendEmail } from "@/lib/appwrite/paymentFunctions";
 import LoginWithGoogle from "@/components/ui/LoginWithGoogle";
+import { toast, Toaster } from "sonner";
 
 // Define a type for our registration form inputs
 interface RegistrationFormInputs {
@@ -24,6 +25,7 @@ function Page() {
   const [formToggle, setFormToggle] = useState(true);
   const [continueDisable, setContinueDisable] = useState(true);
   const [refer, setRefer] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -47,11 +49,12 @@ function Page() {
   }, []);
 
   const onSubmit: SubmitHandler<RegistrationFormInputs> = async (data) => {
+    setLoading(true);
     try {
       const { email, password, username, firstname, lastname } = data;
       await registerWithEmailAndPass({ email, password, username, firstname, lastname, refer });
       console.log("User registered successfully", data);
-      alert("Registering SUCCESS!");
+      toast.success("Registration successful!");
 
       await sendEmail(
         "Welcome to Our Platform!",
@@ -74,8 +77,22 @@ The Team`,
       );
 
       window.location.href = "/";
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error registering user:", error);
+      let friendlyMessage = "An unexpected error occurred. Please try again.";
+      if (error instanceof Error) {
+        const lowerMsg = error.message.toLowerCase();
+        if (lowerMsg.includes("email")) {
+          friendlyMessage = "There was an issue with your email. Please check and try again.";
+        } else if (lowerMsg.includes("password")) {
+          friendlyMessage = "The password provided is invalid. Please try a different one.";
+        } else {
+          friendlyMessage = error.message;
+        }
+      }
+      toast.error(friendlyMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,7 +126,7 @@ The Team`,
                   className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
                   {...register("email", { required: true })}
                 />
-                {errors.email && <span>This field is required</span>}
+                {errors.email && <span className="text-red-500">This field is required</span>}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="password" className="font-medium text-lg">Password*</label>
@@ -135,6 +152,7 @@ The Team`,
               </div>
               <div className="w-full flex justify-center">
                 <button
+                  type="button"
                   className={`${continueDisable ? "opacity-70" : "opacity-100"} bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center py-2 cursor-pointer mx-6 mt-12`}
                   onClick={() => setFormToggle(false)}
                   disabled={continueDisable}
@@ -152,7 +170,7 @@ The Team`,
                   className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
                   {...register("username", { required: true })}
                 />
-                {errors.username && <span>This field is required</span>}
+                {errors.username && <span className="text-red-500">This field is required</span>}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="firstname" className="font-medium text-lg">First Name*</label>
@@ -161,7 +179,7 @@ The Team`,
                   className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
                   {...register("firstname", { required: true })}
                 />
-                {errors.firstname && <span>This field is required</span>}
+                {errors.firstname && <span className="text-red-500">This field is required</span>}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="lastname" className="font-medium text-lg">Last Name*</label>
@@ -170,11 +188,11 @@ The Team`,
                   className="border border-slate-500 rounded-lg w-full px-3 py-2 bg-transparent outline-none"
                   {...register("lastname", { required: true })}
                 />
-                {errors.lastname && <span>This field is required</span>}
+                {errors.lastname && <span className="text-red-500">This field is required</span>}
               </div>
               <input
                 type="submit"
-                value="Sign Up"
+                value={loading ? "Signing up..." : "Sign Up"}
                 className="bg-black text-white border border-[#049ABC] rounded-xl w-full flex justify-center items-center py-2 cursor-pointer mt-12"
               />
             </div>
@@ -182,12 +200,13 @@ The Team`,
         </form>
         <LoginWithGoogle register={true} />
         <p className="para text-center">
-          Already have an account?{" "}
+          Already have an account? <br />
           <Link href="/login" className="text-blue-700 cursor-pointer">
             Login
           </Link>
         </p>
       </div>
+      <Toaster />
     </div>
   );
 }
