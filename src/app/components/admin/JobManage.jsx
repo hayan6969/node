@@ -98,33 +98,34 @@ const JobManage = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px", maxWidth: "700px", margin: "0 auto", backgroundColor: "#f8f9fa", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
+    <div className='p-5 max-w-[700px] my-5 mx-auto shadow-[0 4px 8px rgba(0, 0, 0, 0.1)] flex flex-col border border-[#B9722D] text-white rounded-md'>
+<div className={`${!createJobVisible?"flex-col":"flex-col-reverse"} flex`}>
 
-<button style={{margin: '20px 70px',width:'-webkit-fill-available', ...buttonStyle }} onClick={() => setCreateJobVisible(!createJobVisible)}>Create Job</button>
-
+<button className='px-4 py-2 border border-[#004AAD] text-white rounded-sm cursor-pointer mx-6 mb-4 hover:bg-opacity-50 hover:bg-[#004AAD]' onClick={() => setCreateJobVisible(!createJobVisible)}>{!createJobVisible?"Create Job":"Cancel"}</button>
 {createJobVisible ? <JobCreate /> : <></>}
+</div>
 
 
       {/* Edit Form with Proper Styling */}
       {editingJob && (
-        <div style={{ backgroundColor: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", marginTop: "20px" }}>
+        <div className="p-5 rounded-lg shadow-[0 4px 8px rgba(0, 0, 0, 0.1)] mt-5">
           <h1>Edit Job</h1>
           <form onSubmit={handleUpdate} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <input style={inputStyle} type="text" name="title" value={editForm.title} onChange={handleChange} placeholder="Title" required />
-            <textarea style={inputStyle} name="description" value={editForm.description} onChange={handleChange} placeholder="Description" required />
-            <textarea style={inputStyle} name="responsibilities" value={editForm.responsibilities} onChange={handleChange} placeholder="Responsibilities" />
+            <input style={inputStyle} className="text-black" type="text" name="title" value={editForm.title} onChange={handleChange} placeholder="Title" required />
+            <textarea style={inputStyle} className="text-black" name="description" value={editForm.description} onChange={handleChange} placeholder="Description" required />
+            <textarea style={inputStyle} className="text-black" name="responsibilities" value={editForm.responsibilities} onChange={handleChange} placeholder="Responsibilities" />
 
             <h4>Skills:</h4>
             {editForm.skill_qualifications.map((skill, index) => (
               <div key={index} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <input style={{ flex: 1, padding: "8px", borderRadius: "4px", border: "1px solid #ddd" }} type="text" value={skill} onChange={(e) => handleSkillChange(index, e.target.value)} />
+                <input className="text-black " style={{ flex: 1, padding: "8px", borderRadius: "4px", border: "1px solid #ddd" }} type="text" value={skill} onChange={(e) => handleSkillChange(index, e.target.value)} />
                 <button type="button" onClick={() => removeSkill(index)} style={removeButtonStyle}>X</button>
               </div>
             ))}
-            <button type="button" onClick={addSkill} style={buttonStyle}>Add Skill</button>
+            <button type="button" onClick={addSkill} className="w-full px-3 py-1 rounded-sm text-center border border-[#004AAD] hover:bg-[#004AAD] hover:bg-opacity-50">Add Skill</button>
 
-            <button type="submit" style={buttonStyle}>Update Job</button>
-            <button type="button" onClick={() => setEditingJob(null)} style={cancelButtonStyle}>Cancel</button>
+            <button type="submit" className="w-full px-3 py-1 rounded-sm text-center border border-[#004AAD] hover:bg-[#004AAD] hover:bg-opacity-50">Update Job</button>
+            <button type="button" onClick={() => setEditingJob(null)} className="w-full px-3 py-1 rounded-sm text-center border border-[#B9722D] hover:bg-[#B9722D] hover:bg-opacity-50" >Cancel</button>
           </form>
         </div>
       )}
@@ -137,26 +138,19 @@ const JobManage = () => {
       ) : (
         <ul style={{ listStyle: "none", padding: 0 }}>
           {jobs ? jobs.map((job) => (
-            <li key={job.$id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px", borderBottom: "1px solid #ddd" }}>
+            <li className="grid grid-cols-3 gap-2 items-center justify-between p-2 border-b border-[#B9722D]" key={job.$id}>
               <span style={{ cursor: "pointer", color: "#007bff", fontWeight: "bold" }} onClick={() => { setSelectedJob(job); setShowModal(true); }}>
                 {job.title}
               </span>
-              <span>responses: {job.applicants.length}</span>
-              <div>
-                <button onClick={() => handleEdit(job)} style={{ marginRight: "8px", padding: "5px 10px", border: "none", backgroundColor: "#ffc107", color: "#fff", borderRadius: "4px", cursor: "pointer" }}>
+              <span className="text-center" >responses: {job.applicants.length}</span>
+              <div className="flex gap-2 justify-end w-full">
+                <button className="border border-[#B9722D] rounded-full py-1 text-white cursor-pointer px-3" onClick={() => handleEdit(job)}>
                   Edit
                 </button>
                 <button
+                className="rounded-full py-1 px-3 border border-[#004AAD] text-white cursor-pointer"
                   onClick={() => handleDelete(job.$id)}
-                  style={{
-                    padding: "5px 10px",
-                    border: "none",
-                    backgroundColor: "#dc3545",
-                    color: "#fff",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                    opacity: deletingJobId === job.$id ? 0.6 : 1,
-                  }}
+                  style={{opacity: deletingJobId === job.$id ? 0.6 : 1,}}
                   disabled={deletingJobId === job.$id}
                 >
                   {deletingJobId === job.$id ? "Deleting..." : "Delete"}
@@ -166,32 +160,8 @@ const JobManage = () => {
           )):''}
         </ul>
       )}
-
-      {editingJob && (
-        <div style={{ backgroundColor: "#fff", padding: "20px", borderRadius: "8px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", marginTop: "20px" }}>
-          <h3>Edit Job</h3>
-          <form onSubmit={handleUpdate} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <input style={inputStyle} type="text" name="title" value={editForm.title} onChange={handleChange} placeholder="Title" required />
-            <textarea style={inputStyle} name="description" value={editForm.description} onChange={handleChange} placeholder="Description" required />
-            <textarea style={inputStyle} name="responsibilities" value={editForm.responsibilities} onChange={handleChange} placeholder="Responsibilities" />
-
-            <h4>Skills:</h4>
-            {editForm.skill_qualifications.map((skill, index) => (
-              <div key={index} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <input style={{ flex: 1, padding: "8px", borderRadius: "4px", border: "1px solid #ddd" }} type="text" value={skill} onChange={(e) => handleSkillChange(index, e.target.value)} />
-                <button type="button" onClick={() => removeSkill(index)} style={removeButtonStyle}>X</button>
-              </div>
-            ))}
-            <button type="button" onClick={addSkill} style={buttonStyle}>Add Skill</button>
-
-            <button type="submit" style={buttonStyle}>Update Job</button>
-            <button type="button" onClick={() => setEditingJob(null)} style={cancelButtonStyle}>Cancel</button>
-          </form>
-        </div>
-      )}
-
       {showModal && selectedJob && (
-        <div style={modalOverlay}>
+        <div style={modalOverlay}  className="text-black">
           <div style={modalContent}>
             <h3>{selectedJob.title}</h3>
             <p><strong>Description:</strong> {selectedJob.description}</p>
