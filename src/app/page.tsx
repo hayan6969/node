@@ -1,3 +1,4 @@
+import { Video } from "lucide-react"
 import Decentralization from "./components/Decentralization"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
@@ -9,12 +10,12 @@ function page() {
     <>
 <div className="w-screen overflow-x-hidden">
     <Header/>
-    <div className=" h-[70vh] md:h-[90vh] md:pt-10 bg-blue-200 relative w-screen" >
-      <div className="absolute h-full w-full z-0 ">
-<div className="bg-red-[500] w-full h-full" >
-video will come here
-</div>
-</div>
+
+    <div className="w-screen h-[90vh]  bg-[#080808] relative" >
+    <div className="w-full h-full top-0 left-0 overflow-hidden">
+      <video src="https://cdn.pixabay.com/video/2023/03/05/153249-804933410_large.mp4" muted autoPlay loop={false} className="w-full" ></video>
+      </div>
+     <div className="w-full md:pt-10 absolute top-0 left-0">
 <div className="z-10 relative text-white flex items-center justify-center w-full">
 <div className="flex gap-10 mt-10">
 <button className="primary_bg_color px-5 py-2 rounded-lg ">
@@ -25,6 +26,7 @@ video will come here
         </button>
         </div>
         </div>
+     </div>
         
         </div>
     <HeroPage/>

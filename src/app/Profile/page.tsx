@@ -8,8 +8,8 @@ function page() {
     <>
     <Header/>
     <section className="w-screen min-h-screen profileBg bg-no-repeat bg-center bg-cover relative overflow-hidden">
-      <div className="absolute bottom-0 w-[110vw] pr-[10vw] h-1/3 max-md:h-1/2 flex justify-between gap-6 px-20 md:px-10 max-sm:px-0 max-sm:pr-[10vw] shadow-xl shadow-white font-semibold text-black z-10">
-      <span className="absolute right-20 max-md:right-0 max-md:text-center max-md:w-full text-8xl bottom-full unbordered-white z-20 translate-y-4">MILLIE WILDLY</span>
+      <div className="absolute bottom-0 w-[100vw] left-0 h-1/3 mx-0 max-md:h-1/2 flex justify-between gap-6 shadow-xl shadow-white font-semibold text-black z-10">
+      <span className="absolute right-0 max-md:right-0 -translate-x-[5vw] max-md:text-center max-md:w-full text-8xl bottom-full unbordered-white z-20 translate-y-4">MILLIE WILDLY</span>
       <span className="absolute w-full h-full z-0">
         <div className="gradient-blur max-md:-translate-x-20 max-sm:-translate-x-8">
     <div></div>
@@ -20,7 +20,7 @@ function page() {
     <div></div>
   </div>
       </span>
-        <div className="flex flex-col items-start justify-start -translate-y-8 max-md:hidden">
+        <div className="flex flex-col items-start justify-start -translate-y-8 max-md:hidden ml-[5vh]">
           <Image
             src={dp}
             width={250}
@@ -39,7 +39,7 @@ function page() {
             </div>
           </div>
         </div>
-        <div className="flex w-full flex-col gap-2 items-center px-12 max-md:px-4 py-4 z-10">
+        <div className="flex w-full flex-col gap-2 items-center px-12 max-md:px-4 py-4 z-10 pr-[5vw] max-md:pr-0">
           <div className="flex w-full h-full justify-between">
             <div className="flex flex-col items-center cursor-pointer">
               <p>Rank</p>
@@ -63,7 +63,7 @@ function page() {
             </div>
           </div>
           <div className="flex justify-between items-start max-sm:items-center flex-row-reverse w-full h-full">
-          <div className=" w-full h-full flex justify-end items-center max-md:items-start max-sm:items-center gap-6 z-10 max-sm:flex-col max-sm:gap-2">
+          <div className=" w-full h-full flex justify-end max-sm:items-end items-center max-md:items-start gap-6 z-10 max-sm:flex-col max-sm:gap-0 max-sm:pr-1">
             <Image  src='./dollar_icon.svg' width={40} height={20} alt="dollar_icon" className="cursor-pointer" />
             <Image  src='./envelop_icon.svg' width={40} height={20} alt="envelop_icon" className="cursor-pointer" />
             <Image  src='./3dot_icon.svg' width={40} height={20} alt="3dot_icon" className="cursor-pointer" />
@@ -76,7 +76,7 @@ function page() {
             alt="my_dp"
             className="rounded-xl"
           />
-          <div className="flex flex-col w-full justify-between items-center  px-4  ">
+          <div className="flex flex-col w-full justify-between items-center px-4  ">
             <div className="flex  gap-1 items-center">
               <p>Photo</p>
               <span>0</span>
@@ -91,9 +91,9 @@ function page() {
         </div>
       </div>
     </section>
-      <section className="w-screen min-h-screen bg-[#8EB3D8] z-10 relative p-10 flex justify-center items-center">
+      <section className="w-screen min-h-screen bg-[#8EB3D8] z-10 relative p-10 flex flex-col justify-center items-center">
+            <span className="text-5xl font-semibold w-full text-center text-white">WHO I AM</span>
         <div className="w-full h-full bg-gradient-to-b from-[#545454] to-[#000000] flex flex-col gap-6 p-6 relative text-white rounded-lg">
-            <span className="text-5xl font-semibold w-full text-center -rotate-45 -translate-y-8 mb-6">WHO I AM</span>
             <p>Welcome to my world!  Who I Am I’m [Name], a passionate creator who loves to express myself through [your content focus, e.g., captivating visuals, sultry performances, or engaging stories]. My journey is all about embracing confidence, celebrating individuality, and connecting with incredible souls like you. </p>
             <p>Here, you’ll find a mix of [highlight your content type, e.g., exclusive behind-the-scenes moments, personal stories, or jaw-dropping photos/videos] that I pour my heart into. Every post is crafted to ignite your curiosity, inspire your imagination, and leave you wanting more. </p>
             <p>When I’m not creating, you can find me [fun personal touch, e.g., sipping coffee while dreaming up new ideas, dancing to my favorite tunes, or exploring the world one adventure at a time]. </p>

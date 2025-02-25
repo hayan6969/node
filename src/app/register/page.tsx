@@ -97,9 +97,9 @@ The Team`,
   };
 
   return (
-    <div className="p-10 md:p-20 bg-black min-h-[100vh] text-white flex flex-col gap-8 items-center">
+    <div className="p-10 md:p-20 max-sm:p-4 bg-black min-h-[100vh] text-white flex flex-col gap-8 items-center">
       <h1 className="text-6xl font-bold">Register</h1>
-      <div className="w-full h-full p-6 rounded-xl bg-gradient-to-r from-[#2B160A] to-[#1A2145] flex flex-col items-center border border-[#004AAD] relative">
+      <div className="w-full h-full p-6 max-sm:p-2 rounded-xl bg-gradient-to-r from-[#2B160A] to-[#1A2145] flex flex-col items-center border border-[#004AAD] relative">
         {!formToggle && (
           <div className="absolute top-10 left-10 text-2xl cursor-pointer" onClick={() => setFormToggle(true)}>
             <FaArrowLeftLong />
@@ -117,7 +117,7 @@ The Team`,
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           {formToggle ? (
-            <div className="flex flex-col py-10 gap-6 w-full px-44">
+            <div className="flex flex-col py-10 gap-6 w-full px-44 max-lg:px-24 max-md:px-12 max-sm:px-4">
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="font-medium text-lg">Email*</label>
                 <input
@@ -162,7 +162,7 @@ The Team`,
               </div>
             </div>
           ) : (
-            <div className="flex flex-col py-10 gap-6 w-full px-44">
+            <div className="flex flex-col py-10 gap-6 w-full px-44 max-lg:px-24 max-md:px-12 max-sm:px-4">
               <div className="flex flex-col gap-2">
                 <label htmlFor="username" className="font-medium text-lg">Username*</label>
                 <input

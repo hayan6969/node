@@ -34,7 +34,7 @@ function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     const checkUser = async () => {
       try {
@@ -167,12 +167,19 @@ function Header() {
       </nav>
 
       {/* Mobile Sidebar */}
-      <button
-        onClick={() => setOpenSidebar(!openSidebar)}
-        className="md:hidden bg-red-500 p-5 top-5 fixed left-5 z-50 rounded-3xl text-white font-bold uppercase"
-      >
-        {openSidebar ? "Close" : "Menu"}
-      </button>
+
+
+
+         <button
+      id="nav-icon1"
+      className={`${isOpen ? "open" : ""} md:hidden z-50 w-8 h-11 fixed m-5 cursor-pointer`}
+      onClick={() => (setIsOpen(!isOpen),setOpenSidebar(!openSidebar))}
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+      
 
       <div
         className={`${
