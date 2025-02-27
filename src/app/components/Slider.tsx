@@ -48,23 +48,24 @@ type ReviewCardProps = {
 const ReviewCard = ({ img, title, name, username }: ReviewCardProps) => {
   return (
     <figure
-      className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
-      )}
-    >
-      <div className="w-64 h-20 flex justify-center items-center text-5xl unbordered-white text-opacity-70 relative overflow-hidden">
-        <img
-          src={img}
-          alt="card_image"
-          className="absolute w-full h-full top-0 left-0"
-        />
-        <span className="absolute w-full h-full left-0 top-0 flex justify-center items-center text-center">
-          {title}
-        </span>
-      </div>
-    </figure>
+  className={cn(
+    "relative w-64 cursor-pointer  ",
+    "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+    "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+  )}
+>
+  <div className="w-full h-20 flex rounded-tl-[25px] rounded-br-[25px] justify-center items-center text-5xl unbordered-white text-opacity-70 relative overflow-hidden">
+    <img
+      src={img}
+      alt="card_image"
+      className="absolute w-full h-full top-0 left-0 object-cover rounded-tl-[5px] rounded-br-[5px]"
+    />
+    <span className="absolute inset-0 flex justify-center items-center text-center">
+      {title}
+    </span>
+  </div>
+</figure>
+
   );
 };
 

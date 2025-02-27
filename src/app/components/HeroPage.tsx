@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Slider } from "./Slider";
+import GradientText from "@/components/GradientText/GradientText";
 
 function HeroPage() {
   return (
@@ -22,7 +23,7 @@ function HeroPage() {
         <div className="w-full py-10 flex justify-center items-center gap-6 max-sm:gap-4 italic text-lg">
           <p className="text-end">
             <b>For user,</b> this means feeling like <br />
-            just snohter number.
+            just anohter number.
           </p>
           <span className="w-1 h-14 max-sm:h-40 bg-white border border-[#A92E2E]"></span>
           <p className="text-start">
@@ -44,7 +45,14 @@ function HeroPage() {
         </div>
         <div className="mt-14 lg:mb-20 flex flex-col gap-4 ">
           <h1 className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl">
-            Imagine This:
+          <GradientText
+  colors={["#ffffff", "#ffffff", "#ffffff", "#3570bf", "#004aad", "#3570bf", "#ffffff", "#ffffff", "#ffffff"]}
+  animationSpeed={7}
+  showBorder={false}
+  className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl"
+>
+  Imagine This:
+</GradientText>
           </h1>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
             A world where you not only explore your fantasies — you actively
@@ -502,7 +510,14 @@ function HeroPage() {
         </div>
         <div className="mt-20 lg:mb-20 flex flex-col gap-4 ">
           <h1 className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl">
-            What Makes Us Unique
+          <GradientText
+  colors={["#ffffff", "#ffffff", "#ffffff", "#3570bf", "#004aad", "#3570bf", "#ffffff", "#ffffff", "#ffffff"]}
+  animationSpeed={7}
+  showBorder={false}
+  className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl"
+>
+What Makes Us Unique
+</GradientText>
           </h1>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl relative before:w-24 before:h-24 before:blur-2xl before:absolute before:bg-[#CFB145] before:rounded-full before:bg-opacity-15 after:w-32 after:h-32 after:blur-2xl after:absolute after:bg-[#CFB145] after:rounded-full z-10 after:bg-opacity-15 after:mt-4">
             A world where you not only explore your fantasies — you actively
@@ -522,7 +537,7 @@ function HeroPage() {
         </div>
         <div className="mt-20 lg:mb-20 flex flex-col gap-4 ">
           <h1 className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl">
-            What Makes Us Unique
+          Discover the Variety Our Platform Offers
           </h1>
           <Slider />
           {/* <div className="flex flex-col gap-8 py-8">
@@ -555,7 +570,14 @@ function HeroPage() {
         </div>
         <div className="mt-20 lg:mb-20 flex flex-col gap-4 text-center items-center">
           <h1 className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl">
-            Be Part of the Next Era
+          <GradientText
+  colors={["#ffffff", "#ffffff", "#ffde59", "#cd7f32", "#ffde59", "#ffffff", "#ffffff"]}
+  animationSpeed={7}
+  showBorder={false}
+  className="font-bold text-xl sm:text-4xl md:text-4xl lg:text-5xl 2xl:text-6xl"
+>
+Be Part of the Next Era
+</GradientText>
           </h1>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl w-3/4">
             Step into a world where imagination knows no limits, and everyone is
