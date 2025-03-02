@@ -47,7 +47,7 @@ function Page() {
     <>
       <Header />
       <section className="min-h-screen bg-[#080808] pt-32 max-md:pt-16 px-20 max-md:px-10 max-sm:px-4">
-        <div className="flex max-lg:flex-col gap-12 items-center justify-between min-h-screen">
+        <div className="flex max-lg:flex-col gap-12 justify-between min-h-screen">
           <div className="px-4 py-2 h-full w-3/5 max-lg:w-full flex flex-col gap-6 bg-black">
             <div className="flex justify-between items-center max-sm:flex-col max-sm:text-center w-full gap-4">
               <h1 className="heading text-white">

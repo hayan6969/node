@@ -58,7 +58,7 @@ function HeroPage() {
             A world where you not only explore your fantasies — you actively
             shape them. At ASS I AM, you'll discover more than mere content;
             you'll uncover an entire universe of entertainment, interaction, and
-            limitless possibilities. You’re not just a number. You’re part of a
+            limitless possibilities. <br /> <b>You’re not just a number.</b> You’re part of a
             community that values you and gives you the freedom to express your
             creativity and individuality
           </p>
@@ -528,7 +528,7 @@ What Makes Us Unique
             creativity and individuality
           </p>
           <p className="mt-8 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl boxShadow p-4">
-            At ASS I AM, we understand that success isn’t about maximizing
+            At <b>ASS I AM</b> , we understand that success isn’t about maximizing
             profits, monopolizing markets, or standardizing creativity. The key
             lies in diversity and staying close to the community. Only with
             active user involvement can we create an ecosystem that truly

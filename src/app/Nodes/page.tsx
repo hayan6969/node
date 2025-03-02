@@ -5,6 +5,7 @@ import { FaCircle } from "react-icons/fa6";
 import Image from "next/image";
 import StayInLoop from "../components/StayInLoop";
 import Link from "next/link";
+import GradientText from "@/components/GradientText/GradientText";
 
 function page() {
   return (
@@ -39,12 +40,20 @@ function page() {
           </p>
         </div>
         <div className="w-full flex flex-col gap-6">
+          <GradientText
+                                colors={["#ffffff", "#ffffff", "#ffffff", "#3570bf", "#004aad", "#3570bf", "#ffffff", "#ffffff", "#ffffff"]}
+                                animationSpeed={7}
+                                showBorder={false}
+                                className="heading"
+                              >
           <h3 className="heading">Why Decentralization is Essential</h3>
+                              </GradientText>
           <p className="para">
             Decentralization is at the heart of our mission. By distributing
             data and tasks across multiple nodes, we eliminate the
             vulnerabilities of centralized platforms, ensuring:
           </p>
+          </div>
           <div className="flex flex-col gap-3">
             <p className="para flex gap-2 items-start">
               <FaCircle className="text-xs" />
@@ -106,7 +115,15 @@ function page() {
             </div>
           </div>
           <div className="w-full flex-col flex gap-6">
+          <div className="w-full flex flex-col gap-6">
+          <GradientText
+                                colors={["#ffffff", "#ffffff", "#ffffff", "#3570bf", "#004aad", "#3570bf", "#ffffff", "#ffffff", "#ffffff"]}
+                                animationSpeed={7}
+                                showBorder={false}
+                                className="heading"
+                              >
             <h5 className="text-2xl font-medium">Supporting the Vision</h5>
+                              </GradientText>
             <p className="para">
               Owning a node isn’t an <b>investment</b> — it’s a{" "}
               <b>voluntary commitment</b> to driving <b>decentralization</b> and{" "}

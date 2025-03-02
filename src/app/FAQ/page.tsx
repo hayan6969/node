@@ -28,11 +28,9 @@ function page() {
 
         </span>
       </h1>
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-3">
         {accordianData.map(item=>
-      <Accordion key={item.id} type="single" collapsible className="my-2 zIndex relative">
-         <span className="absolute w-20 h-[90%] rounded-lg custom-border-1 left-0 top-0"></span>
-         <span className="absolute w-20 h-[90%] rounded-lg custom-border-2 right-0 bottom-0"></span>
+      <Accordion key={item.id} type="single" collapsible className="zIndex relative w-full  rounded-lg border border-white bg-black text-white  animate-glow-border">
       <AccordionItem value="item-1">
         <AccordionTrigger>{item.title}</AccordionTrigger>
         <AccordionContent>

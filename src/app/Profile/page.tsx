@@ -40,11 +40,7 @@ function page() {
           </div>
         </div>
         <div className="flex w-full flex-col gap-2 items-center px-12 max-md:px-4 py-4 z-10 pr-[5vw] max-md:pr-0">
-          <div className="flex w-full h-full justify-between">
-            <div className="flex flex-col items-center cursor-pointer">
-              <p>Rank</p>
-              <Image src="./diamond_icon.svg" height={8} width={50} alt="" />
-            </div>
+          <div className="flex w-full max-md:w-full h-full justify-end gap-[15%] max-sm:gap-2 max-sm:justify-between">
             <div className="flex flex-col items-center">
               <p>Heart</p>
               <span>0</span>

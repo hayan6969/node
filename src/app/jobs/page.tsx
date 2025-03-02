@@ -76,7 +76,7 @@ const Page = () => {
         <ul className="w-full flex items-center justify-center gap-3 flex-wrap py-12">
           {jobs.map((job) => (
             <li
-            className="rounded-2xl p-3 border flex items-center gap-4 justify-between w-[23rem] max-lg:w-[15rem] max-sm:w-full"
+            className="rounded-2xl p-3 border flex items-center gap-4 justify-between w-[23rem] max-lg:w-[15rem] max-sm:w-full transition-all duration-300 hover:border-blue-500 hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.5)]"
               key={job.$id}
             >
               <div className="flex flex-col gap-2">
