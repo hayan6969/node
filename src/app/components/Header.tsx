@@ -178,62 +178,32 @@ function Header() {
             </Link>
           ))}
         </div>
-        <div className="flex flex-col gap-6 mt-10">
-          <p className="uppercase font-bold hover:text-red-500">Whitepaper</p>
-          <p className="uppercase font-bold hover:text-red-500">Contact</p>
-        </div>
+        <Link href='/contact' className="flex flex-col gap-6 mt-6">Contact</Link>
         {isLogin ? (
-            <div className="py-6">
-              <Sheet>
-                <SheetTrigger>
-                  <FaRegUserCircle className="cursor-pointer border-none outline-none scale-150 -translate-x-1  " />
-                </SheetTrigger>
-                <SheetContent className="bg-[#262626] text-white before:absolute before:w-full border-none before:left-1/2 before:-translate-x-1/2 px-0 before:h-24 before:rounded-b-3xl before:bg-[#004AAD] before:top-0 pt-32">
-                  <FaRegUser className="text-5xl cursor-pointer absolute top-16 left-6 text-white bg-[#004AAD] rounded-full border-4 border-white" />
-                  <Link href="/settings">
-                    <GoGear className="absolute top-3 right-3 text-2xl text-white cursor-pointer bg-[#004AAD]" />
-                  </Link>
-                  <SheetHeader>
-                    <SheetDescription className="text-white pl-4">
-                      Username: {user?.first_name}
-                    </SheetDescription>
-                    <SheetDescription className="text-white pl-4">
-                      Email: {user?.email}
-                    </SheetDescription>
-                    <div className="w-full px-4 py-6 border-y-2 border-[#cf9f45] gap-4 flex flex-col">
+              <div className="w-full py-3 border-y-2 my-3 border-[#cf9f45] gap-4 flex flex-col">
                       <Link href="/Profile">
-                        <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
+                        <div className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                           <FaRegUser /> Profile
-                        </SheetDescription>
+                        </div>
                       </Link>
-                      <SheetDescription
+                      <div
                         onClick={() =>
                           (window.location.href = "/orders-history")
                         }
                         className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150"
                       >
                         <LuHistory /> Order History
-                      </SheetDescription>
-                      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
+                      </div>
+                      <div className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                         <MdOutlineInventory /> Inventory
-                      </SheetDescription>
-                      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
+                      </div>
+                      <div className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                         <GrNodes /> Node
-                      </SheetDescription>
-                      <SheetDescription className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
+                      </div>
+                      <div className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150">
                         <TbSocial /> Social
-                      </SheetDescription>
+                      </div>
                     </div>
-                    <SheetDescription
-                      onClick={logOut}
-                      className="text-white flex gap-2 items-center cursor-pointer hover:text-[#cf9f45] duration-150 pl-4 pt-4"
-                    >
-                      <MdLogout /> Logout
-                    </SheetDescription>
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
-            </div>
           ) : (
             <div>
 

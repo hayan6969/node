@@ -12,9 +12,9 @@ function Page() {
   return (
     <>
       <Header />
-      <div className="bg-[#080808] text-white min-h-screen p-10 md:p-20 max-sm:px-4 pb-0 md:pb-0">
-        <div className="flex items-center justify-center relative">
-          <div className="mt-10 w-full md:mt-20 text-[9vw] unbordered-white relative z-10 before:mt-2 before:absolute before:w-[85vw] before:rounded-xl boxShadow2 before:h-10 before:top-1/2 before:-translate-y-1/2 before:bg-[#CD7F32] max-sm:before:h-2 max-sm:before:-translate-y-2.5 flex justify-center items-center before:-z-10">
+      <div className="bg-[#080808] text-white min-h-screen p-10 md:p-20 max-sm:px-4 pb-0 md:pb-0 flex flex-col">
+        <div className="flex items-center justify-center relative h-auto pb-2">
+          <div className="mt-10 w-full h-auto md:mt-20 text-[9vw] unbordered-white relative z-10 before:mt-2 before:absolute before:w-[85vw] before:rounded-xl boxShadow2 before:h-10 before:top-1/2 before:-translate-y-1/2 before:bg-[#CD7F32] max-sm:before:h-2 max-sm:before:-translate-y-2.5 flex justify-center items-center before:-z-10">
             <span className="absolute w-3/4">
               <svg
                 width="auto"
@@ -44,7 +44,7 @@ function Page() {
             </span>
           </div>
         </div>
-        <p className="para mt-10 md:mt-20">
+        <p className="para mt-10 2xl:mt-36 md:mt-20">
           At ASS I AM, we understand that a well-structured and balanced
           tokenomic system is the cornerstone of success and sustainability. We
           are taking the necessary time to design a framework that not only
@@ -138,7 +138,7 @@ function Page() {
             sustainable value accross the entire ASS I AM ecosystem.
           </p>
         </div>
-        <p className="para mt-5 ">
+        <p className="para mt-5 2xl:mb-8">
           Our goal is ambitious yet clear: to deliver a tokenomics system that
           is fair, transparent, and beneficial for everyone involved
         </p>
@@ -147,9 +147,9 @@ function Page() {
             <div className="flex  justify-start w-[58%]"></div>
           </div>
           <div className="absolute flex top-0 left-0 h-full w-full justify-center items-center">
-            <h1 className="text-[4vw] font-bold text-white relative">
+            <h1 className="text-[4vw] font-bold text-white relative 2xl:py-14">
               <span className="z-10">BUILDING VALUE</span>
-              <span className="absolute w-full -left-1/3 lg:-translate-y-4 -top-1/2 max-lg:-translate-y-1/3 max-lg:px-12 max-sm:px-6 max-sm:-top-2/3">
+              <span className="absolute w-full -left-1/3 lg:-translate-y-4 2xl:top-0 -top-1/2 max-lg:-translate-y-1/3 max-lg:px-12 max-sm:px-6 max-sm:-top-2/3">
                 <svg
                   width="auto"
                   height="106"
@@ -176,7 +176,7 @@ function Page() {
                   />
                 </svg>
               </span>
-              <span className="absolute w-full left-1/3 top-1/3 max-lg:px-6 max-lg:top-1/3 max-lg:-translate-y-1/4 max-sm:-translate-y-1/3 max-sm:px-0">
+              <span className="absolute w-full left-1/3 top-1/3 2xl:bottom-0 max-lg:px-6 max-lg:top-1/3 max-lg:-translate-y-1/4 max-sm:-translate-y-1/3 max-sm:px-0">
                 <svg
                   width="auto"
                   height="120"
@@ -222,13 +222,13 @@ function Page() {
         </p>
          <h5 className="heading flex items-center mt-10 md:mt-20">
                 Stay in L
-                <span>
+                <span className="h-full content-center max-md:pb-1">
                   <Image
                     src="./oo.svg"
                     width={40}
                     height={10}
                     alt=""
-                    className="translate-y-1"
+                    className="translate-y-1 max-md:scale-90"
                   />
                 </span>
                 <span className="-translate-x-1">p !</span>

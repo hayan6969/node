@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import StayConnected from "./StayConnected";
 import GradientText from "@/components/GradientText/GradientText";
+import Link from "next/link";
 
 function Revolution() {
   return (
@@ -119,9 +120,9 @@ function Revolution() {
                 and blockchain technology. Join us now and make a real impact
               </p>
             </div>
-            <button className="w-24 text-sm py-1 bg-black text-white border border-[#049ABC] rounded-full">
+            <Link href="/BuyNodes" className="w-24 text-center text-sm py-1 bg-black text-white border border-[#049ABC] rounded-full">
               Get a Node
-            </button>
+            </Link>
           </div>
 
 
@@ -138,9 +139,9 @@ function Revolution() {
               </p>
             </div>
             
-            <button className="w-24 text-sm py-1 bg-black text-white border border-[#049ABC] rounded-full">
+            <Link href="/BuyNodes" className="w-24 text-center text-sm py-1 bg-black text-white border border-[#049ABC] rounded-full">
               Get a Node
-            </button>
+            </Link>
           </div>
         </div>
         <StayConnected />

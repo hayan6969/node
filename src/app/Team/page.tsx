@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { FaCircle } from "react-icons/fa6";
 import Image from "next/image";
 import GradientText from "@/components/GradientText/GradientText";
+import Link from "next/link";
 function page() {
   return (
     <>
@@ -133,9 +134,9 @@ function page() {
               Join Us – Explore Current Opportunities
             </h1>
             </GradientText>
-            <button className="mt-10 border-blue-500 border px-7 text-white py-1 rounded-lg mb-20">
+            <Link href='/jobs' className="mt-10 border-blue-500 border px-7 text-white py-1 rounded-lg mb-20">
               View jobs
-            </button>
+            </Link>
           </div>
       <Footer />
         </div>

@@ -99,7 +99,7 @@ function HeroPage() {
               </svg>
             </span>
           </h1>
-          <div className="flex flex-col py-12 justify-center items-center max-sm:hidden">
+          <div className="flex flex-col py-12 justify-center items-center max-md:hidden">
             <div className="flex max-md:flex-col max-md:gap-0 gap-24">
               <div className="relative before:absolute before:w-32 max-lg:before:w-20 max-lg:before:h-20 before:h-32 before:bg-[#CD7F32] before:rounded-full before:blur-2xl before:opacity-70 before:right-0 before:top-1/2 before:-translate-y-1/2">
                 <svg
