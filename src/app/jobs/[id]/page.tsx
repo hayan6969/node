@@ -375,12 +375,15 @@ const Page = () => {
               </div>
               {/* File Upload */}
               <div className="w-full content-end">
+              <label htmlFor="message" className="text-sm ml-1 text-[#080808]">
+                .
+              </label>
                 <input
                   type="file"
                   name="document"
                   onChange={handleFileChange}
                   required
-                  className="bg-transparent p-3 border border-[#ccc] rounded w-full"
+                  className="bg-transparent p-2.5 border border-[#ccc] rounded w-full"
                 />
               </div>
             </div>

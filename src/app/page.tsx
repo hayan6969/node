@@ -72,10 +72,6 @@ function page() {
             ""
           )}
         </div>
-        <div className="group relative p-6 rounded-2xl border-2 border-transparent transition-all duration-300 hover:border-blue-500 hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.5)]">
-      <h2 className="text-lg font-semibold text-white">Hover Me!</h2>
-      <p className="text-gray-300">Watch the border glow.</p>
-    </div>
         <HeroPage />
         <Decentralization />
         <Revolution />
