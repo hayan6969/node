@@ -71,12 +71,18 @@ function Header() {
             </Link>
           ))}
         </div>
-        <div className="w-full flex justify-center">
+        {
+          isLogin?
+          <div className="w-full flex justify-center">
         <button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer">
           Gaming
         </button>
-        </div>
+        </div>:null
+        }
         <div className="flex gap-4 items-center w-full justify-end px-1">
+          {isLogin ? null:<button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer">
+          Gaming
+        </button>}
         <FaTelegram className="text-xl rounded-full hover:text-sky-500 hover:bg-white cursor-pointer text-center content-center duration-200" />
         <FaDiscord className="text-xl rounded-full hover:text-indigo-500  cursor-pointer text-center content-center duration-200" />
 

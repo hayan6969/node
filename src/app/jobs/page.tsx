@@ -73,7 +73,8 @@ const Page = () => {
       {loading ? (
         <p>Loading...</p> // Show loading text while data is being fetched
       ) : (
-        <ul className="w-full flex items-center justify-center gap-3 flex-wrap py-12">
+        <div className=" flex justify-center item-center">
+        <ul className="flex gap-3 flex-wrap py-12 xl:w-[71%] max-xl:w-[95%] max-lg:w-[80%] max-md:w-full max-md:items-center">
           {jobs.map((job) => (
             <li
             className="rounded-2xl p-3 border flex items-center gap-4 justify-between w-[23rem] max-lg:w-[15rem] max-sm:w-full transition-all duration-300 hover:border-blue-500 hover:shadow-[0_0_15px_5px_rgba(59,130,246,0.5)]"
@@ -91,6 +92,7 @@ const Page = () => {
             </li>
           ))}
         </ul>
+        </div>
       )}
       <div className="w-full rounded-2xl bg-gradient-to-b from-[#061D57] to-[#080808] flex flex-col items-center gap-6 p-6 ">
         <h5 className="heading">Current job not catching your eye?</h5>
