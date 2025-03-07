@@ -63,7 +63,7 @@ function Header() {
     <div>
       {/* Desktop Navbar */}
       <nav className="hidden fixed w-screen md:flex justify-center items-center bg-[#080808] text-white px-20 md:px-10 py-2 z-[30] top-0">
-        <div className="flex gap-2 justify-between text-sm w-full">
+        <div className="flex gap-4 justify-start text-sm w-full">
           <div>LINK.</div>
           {NAVLINKS_ITEMS.map((link) => (
             <Link href={link.link} key={link.title}>
@@ -72,7 +72,7 @@ function Header() {
           ))}
         </div>
         {
-          isLogin?
+          !isLogin?
           <div className="w-full flex justify-center">
         <button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer">
           Gaming
@@ -80,7 +80,7 @@ function Header() {
         </div>:null
         }
         <div className="flex gap-4 items-center w-full justify-end px-1">
-          {isLogin ? null:<button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer">
+          {!isLogin ? null:<button className="px-6 py-1 bg-black text-white border border-[#6A156F] rounded-full font-medium text-sm cursor-pointer">
           Gaming
         </button>}
         <FaTelegram className="text-xl rounded-full hover:text-sky-500 hover:bg-white cursor-pointer text-center content-center duration-200" />
