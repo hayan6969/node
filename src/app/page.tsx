@@ -72,9 +72,12 @@ function page() {
             ""
           )}
         </div>
-        <HeroPage />
+        {/* <HeroPage />
         <Decentralization />
-        <Revolution />
+        <Revolution /> */}
+        <h1>
+          <GradientText>Home</GradientText>
+        </h1>
         <div className="w-screen px-20 max-md:px-10 max-sm:px-4 bg-[#080808]">
           <Footer />
         </div>
