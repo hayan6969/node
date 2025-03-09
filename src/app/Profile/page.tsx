@@ -3,11 +3,16 @@ import Image from "next/image";
 import React from "react";
 import dp from "../../../public/profileBg.jpg";
 import Header from "../components/Header";
+import { FaCamera } from "react-icons/fa";
 function page() {
   return (
     <>
     <Header/>
-    <section className="w-screen min-h-screen profileBg bg-no-repeat bg-center bg-cover relative overflow-hidden">
+    <section className="w-screen min-h-screen bg-no-repeat bg-center bg-cover relative overflow-hidden">
+    <FaCamera className="absolute top-14 right-6 text-4xl text-white cursor-pointer"/>
+      <span className="w-screen h-screen absolute top-0 left-0 -z-30">
+        <Image src='/profileBg.jpg' width={1800} height={1800} alt="" className="w-full" />
+      </span>
       <div className="absolute bottom-0 w-[100vw] left-0 h-1/3 mx-0 max-md:h-1/2 flex justify-between gap-6 shadow-xl shadow-white font-semibold text-black z-10">
       <span className="absolute right-0 max-md:right-0 -translate-x-[5vw] max-md:text-center max-md:w-full text-8xl bottom-full unbordered-white z-20 translate-y-4">MILLIE WILDLY</span>
       <span className="absolute w-full h-full z-0">
@@ -21,13 +26,16 @@ function page() {
   </div>
       </span>
         <div className="flex flex-col items-start justify-start -translate-y-8 max-md:hidden ml-[5vh]">
+        <FaCamera className="absolute top-2 left-2 text-xl text-white cursor-pointer"/>
+        <div className="w-40 h-32 overflow-hidden bg-slate-600 rounded-xl flex justify-center items-center ">
           <Image
-            src={dp}
-            width={250}
+            src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
+            width={200}
             height={100}
             alt="my_dp"
             className="rounded-xl"
-          />
+            />
+            </div>
           <div className="flex w-full justify-between items-center  px-4  ">
             <div className="flex flex-col gap-1 items-center">
               <p>Photo</p>
@@ -87,7 +95,7 @@ function page() {
         </div>
       </div>
     </section>
-      <section className="w-screen min-h-screen bg-[#8EB3D8] z-10 relative p-10 flex flex-col justify-center items-center">
+      <section className="w-screen min-h-screen bg-[#8EB3D8] z-10 relative p-10  flex-col justify-center items-center hidden">
             <span className="text-5xl font-semibold w-full text-center text-white">WHO I AM</span>
         <div className="w-full h-full bg-gradient-to-b from-[#545454] to-[#000000] flex flex-col gap-6 p-6 relative text-white rounded-lg">
             <p>Welcome to my world!  Who I Am I’m [Name], a passionate creator who loves to express myself through [your content focus, e.g., captivating visuals, sultry performances, or engaging stories]. My journey is all about embracing confidence, celebrating individuality, and connecting with incredible souls like you. </p>
@@ -96,7 +104,7 @@ function page() {
             <p>Let’s connect, explore, and make this space our shared escape.</p>
         </div>
       </section>
-      <section className="w-screen min-h-screen overflow-hidden bg-gradient-to-b from-[#545454] to-[#000000] flex flex-col gap-8 p-10">
+      <section className="w-screen min-h-screen overflow-hidden bg-gradient-to-b from-[#545454] to-[#000000] hidden flex-col gap-8 p-10">
         <div className="w-full flex gap-4 justify-between items-center">
         <svg width="297" height="80" viewBox="0 0 297 80" fill="none" xmlns="http://www.w3.org/2000/svg" href="http://www.w3.org/1999/xlink">
 <path d="M115.88 54.48C113.24 54.48 110.947 53.88 109 52.68C107.08 51.4533 105.587 49.76 104.52 47.6C103.48 45.4133 102.96 42.88 102.96 40C102.96 37.12 103.48 34.6 104.52 32.44C105.587 30.2533 107.08 28.56 109 27.36C110.947 26.1333 113.24 25.52 115.88 25.52C119.053 25.52 121.627 26.28 123.6 27.8C125.573 29.32 126.84 31.4667 127.4 34.24H123.76C123.307 32.5067 122.427 31.12 121.12 30.08C119.84 29.0133 118.093 28.48 115.88 28.48C113.96 28.48 112.28 28.9467 110.84 29.88C109.427 30.7867 108.333 32.1067 107.56 33.84C106.787 35.5467 106.4 37.6 106.4 40C106.4 42.4 106.787 44.4667 107.56 46.2C108.333 47.9067 109.427 49.2267 110.84 50.16C112.28 51.0667 113.96 51.52 115.88 51.52C118.093 51.52 119.84 51.0133 121.12 50C122.427 48.96 123.307 47.5867 123.76 45.88H127.4C126.84 48.5733 125.573 50.68 123.6 52.2C121.627 53.72 119.053 54.48 115.88 54.48ZM141.239 54.48C139.293 54.48 137.573 54.0267 136.079 53.12C134.586 52.2133 133.426 50.9333 132.599 49.28C131.773 47.6267 131.359 45.6933 131.359 43.48C131.359 41.24 131.773 39.3067 132.599 37.68C133.453 36.0267 134.626 34.7467 136.119 33.84C137.639 32.9333 139.373 32.48 141.319 32.48C143.293 32.48 145.013 32.9333 146.479 33.84C147.973 34.7467 149.133 36.0267 149.959 37.68C150.786 39.3067 151.199 41.24 151.199 43.48C151.199 45.6933 150.773 47.6267 149.919 49.28C149.093 50.9333 147.933 52.2133 146.439 53.12C144.946 54.0267 143.213 54.48 141.239 54.48ZM141.239 51.6C142.466 51.6 143.573 51.3067 144.559 50.72C145.546 50.1067 146.319 49.2 146.879 48C147.466 46.7733 147.759 45.2667 147.759 43.48C147.759 41.6667 147.479 40.16 146.919 38.96C146.359 37.76 145.586 36.8667 144.599 36.28C143.639 35.6667 142.546 35.36 141.319 35.36C140.119 35.36 139.026 35.6667 138.039 36.28C137.053 36.8667 136.266 37.76 135.679 38.96C135.093 40.16 134.799 41.6667 134.799 43.48C134.799 45.2667 135.079 46.7733 135.639 48C136.226 49.2 136.999 50.1067 137.959 50.72C138.946 51.3067 140.039 51.6 141.239 51.6ZM156.067 54V32.96H159.107L159.267 36.28C159.88 35.08 160.76 34.1467 161.907 33.48C163.08 32.8133 164.427 32.48 165.947 32.48C167.493 32.48 168.84 32.7733 169.987 33.36C171.133 33.9467 172.027 34.84 172.667 36.04C173.307 37.24 173.627 38.76 173.627 40.6V54H170.267V40.96C170.267 39.0933 169.8 37.6933 168.867 36.76C167.96 35.8267 166.733 35.36 165.187 35.36C164.147 35.36 163.187 35.6133 162.307 36.12C161.427 36.6 160.72 37.32 160.187 38.28C159.68 39.24 159.427 40.4133 159.427 41.8V54H156.067ZM187.352 54C186.152 54 185.112 53.8133 184.232 53.44C183.352 53.0667 182.672 52.44 182.192 51.56C181.738 50.6533 181.512 49.44 181.512 47.92V35.8H177.832V32.96H181.512L181.952 27.72H184.872V32.96H190.832V35.8H184.872V47.92C184.872 49.1733 185.125 50.0267 185.632 50.48C186.138 50.9067 187.032 51.12 188.312 51.12H190.752V54H187.352ZM203.615 54.48C201.748 54.48 200.095 54.0267 198.655 53.12C197.215 52.2133 196.081 50.9333 195.255 49.28C194.455 47.6267 194.055 45.6933 194.055 43.48C194.055 41.2667 194.455 39.3333 195.255 37.68C196.081 36.0267 197.215 34.7467 198.655 33.84C200.121 32.9333 201.801 32.48 203.695 32.48C205.721 32.48 207.415 32.9333 208.775 33.84C210.135 34.7467 211.161 35.96 211.855 37.48C212.548 39 212.895 40.6667 212.895 42.48C212.895 42.7467 212.895 43.0133 212.895 43.28C212.895 43.5467 212.881 43.8667 212.855 44.24H196.575V41.64H209.615C209.561 39.5867 208.961 38.0267 207.815 36.96C206.695 35.8667 205.295 35.32 203.615 35.32C202.495 35.32 201.455 35.6 200.495 36.16C199.561 36.6933 198.801 37.4933 198.215 38.56C197.628 39.6267 197.335 40.96 197.335 42.56V43.68C197.335 45.44 197.628 46.92 198.215 48.12C198.801 49.2933 199.561 50.1733 200.495 50.76C201.455 51.3467 202.495 51.64 203.615 51.64C205.108 51.64 206.281 51.36 207.135 50.8C207.988 50.2133 208.615 49.3867 209.015 48.32H212.335C212.015 49.4933 211.455 50.5467 210.655 51.48C209.881 52.4133 208.895 53.1467 207.695 53.68C206.521 54.2133 205.161 54.48 203.615 54.48ZM217.551 54V32.96H220.591L220.751 36.28C221.364 35.08 222.244 34.1467 223.391 33.48C224.564 32.8133 225.911 32.48 227.431 32.48C228.978 32.48 230.324 32.7733 231.471 33.36C232.618 33.9467 233.511 34.84 234.151 36.04C234.791 37.24 235.111 38.76 235.111 40.6V54H231.751V40.96C231.751 39.0933 231.284 37.6933 230.351 36.76C229.444 35.8267 228.218 35.36 226.671 35.36C225.631 35.36 224.671 35.6133 223.791 36.12C222.911 36.6 222.204 37.32 221.671 38.28C221.164 39.24 220.911 40.4133 220.911 41.8V54H217.551ZM248.836 54C247.636 54 246.596 53.8133 245.716 53.44C244.836 53.0667 244.156 52.44 243.676 51.56C243.223 50.6533 242.996 49.44 242.996 47.92V35.8H239.316V32.96H242.996L243.436 27.72H246.356V32.96H252.316V35.8H246.356V47.92C246.356 49.1733 246.609 50.0267 247.116 50.48C247.623 50.9067 248.516 51.12 249.796 51.12H252.236V54H248.836Z" fill="white"/>

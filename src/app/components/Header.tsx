@@ -64,7 +64,7 @@ function Header() {
       {/* Desktop Navbar */}
       <nav className="hidden fixed w-screen md:flex justify-center items-center bg-[#080808] text-white px-20 md:px-10 py-2 z-[30] top-0">
         <div className="flex gap-4 justify-start text-sm w-full">
-          <div>LINK.</div>
+          <Link href='/'>LINK.</Link>
           {NAVLINKS_ITEMS.map((link) => (
             <Link href={link.link} key={link.title}>
               {link.title}
