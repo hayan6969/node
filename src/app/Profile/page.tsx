@@ -8,10 +8,10 @@ function page() {
   return (
     <>
     <Header/>
-    <section className="w-screen min-h-screen bg-no-repeat bg-center bg-cover relative overflow-hidden">
+    <section className="w-screen min-h-screen bg-no-repeat bg-center bg-cover relative overflow-hidden ">
     <FaCamera className="absolute top-14 right-6 text-4xl text-white cursor-pointer"/>
-      <span className="w-screen h-screen absolute top-0 left-0 -z-30">
-        <Image src='/profileBg.jpg' width={1800} height={1800} alt="" className="w-full" />
+      <span className="w-screen h-screen absolute top-0 left-0 -z-30 bg-slate-600 flex justify-center items-center">
+        <Image src='https://cdn-icons-png.flaticon.com/512/149/149071.png' width={1000} height={1000} alt="" className="w-full bg-slate-600" />
       </span>
       <div className="absolute bottom-0 w-[100vw] left-0 h-1/3 mx-0 max-md:h-1/2 flex justify-between gap-6 shadow-xl shadow-white font-semibold text-black z-10">
       <span className="absolute right-0 max-md:right-0 -translate-x-[5vw] max-md:text-center max-md:w-full text-8xl bottom-full unbordered-white z-20 translate-y-4">MILLIE WILDLY</span>
@@ -33,7 +33,7 @@ function page() {
             width={200}
             height={100}
             alt="my_dp"
-            className="rounded-xl"
+            className="rounded-xl w-full"
             />
             </div>
           <div className="flex w-full justify-between items-center  px-4  ">
