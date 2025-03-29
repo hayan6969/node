@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { registerWithEmailAndPass } from "@/lib/appwrite/userApi";
+import { registerWithEmailAndPass, getCurrentUser } from "@/lib/appwrite/userApi";
 import { sendEmail } from "@/lib/appwrite/paymentFunctions";
 import LoginWithGoogle from "@/components/ui/LoginWithGoogle";
 
@@ -26,15 +26,24 @@ function Page() {
   const [refer, setRefer] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-      if (isLoggedIn === "true") {
-        window.location.href = "/";
-        return;
+    const checkUser = async () => {
+      try {
+        const user = await getCurrentUser();
+        if (user) {
+          window.location.href = "/";
+          return;
+        }
+      } catch (error) {
+        console.error("Error checking user login status:", error);
       }
-      const urlParams = new URLSearchParams(window.location.search);
-      setRefer(urlParams.get("refer")); // This returns string or null
-    }
+
+      if (typeof window !== "undefined") {
+        const urlParams = new URLSearchParams(window.location.search);
+        setRefer(urlParams.get("refer")); // This returns string or null
+      }
+    };
+
+    checkUser();
   }, []);
 
   const onSubmit: SubmitHandler<RegistrationFormInputs> = async (data) => {
@@ -42,10 +51,10 @@ function Page() {
       const { email, password, username, firstname, lastname } = data;
       await registerWithEmailAndPass({ email, password, username, firstname, lastname, refer });
       console.log("User registered successfully", data);
-      alert('Registering SUCCESS!');
-      window.localStorage.setItem("isLoggedIn", "true");
+      alert("Registering SUCCESS!");
+
       await sendEmail(
-        'Welcome to Our Platform!',
+        "Welcome to Our Platform!",
         `Hello ${firstname}, 🎉
         
 Thank you for registering with us! We're excited to have you on board.
@@ -63,7 +72,7 @@ The Team`,
          <p>If you have any questions, feel free to reach out.</p>
          <p>Best Regards,<br/>The Team</p>`
       );
-      
+
       window.location.href = "/";
     } catch (error) {
       console.error("Error registering user:", error);
@@ -171,7 +180,7 @@ The Team`,
             </div>
           )}
         </form>
-        <LoginWithGoogle  register={true}/>
+        <LoginWithGoogle register={true} />
         <p className="para text-center">
           Already have an account?{" "}
           <Link href="/login" className="text-blue-700 cursor-pointer">

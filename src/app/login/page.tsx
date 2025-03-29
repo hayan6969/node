@@ -5,7 +5,8 @@ import {
   sendEmailOTP, 
   LoginWithOTP, 
   isTwoFactorEnabled, 
-  sendSmsOTP 
+  sendSmsOTP, 
+  getCurrentUser
 } from "@/lib/appwrite/userApi";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -34,10 +35,14 @@ function Page() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const checkUser = () => {
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-      if (isLoggedIn === "true") {
-        window.location.href = "/";
+    const checkUser = async () => {
+      try {
+        const user = await getCurrentUser();
+        if (user) {
+          window.location.href = "/";
+        }
+      } catch (error) {
+        console.error("Error checking user session:", error);
       }
     };
     checkUser();
@@ -60,7 +65,6 @@ function Page() {
           setUserId(userIdRes || "");
           setShowOtp(true);
         } else {
-          // otp is required in this branch, so we use non-null assertion (or add additional checks)
           await LoginWithOTP(userId, otp!);
           window.localStorage.setItem("isLoggedIn", "true");
           window.location.href = "/";
@@ -174,7 +178,7 @@ function Page() {
             </div>
           </div>
         </form>
-        <LoginWithGoogle  register={false}/>
+        <LoginWithGoogle register={false} />
         <p className="para text-center">
           Create a new account <br />
           <Link href="/register" className="text-blue-700 cursor-pointer">
