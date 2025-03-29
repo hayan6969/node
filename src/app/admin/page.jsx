@@ -32,9 +32,9 @@ const Page = () => {
   }
 
   return (
-    <>
+    <section className="w-screen min-h-screen bg-[#080808] flex justify-center items-center">
       <JobManage />
-    </>
+    </section>
   );
 };
 

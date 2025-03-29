@@ -1,12 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { IoInformationCircleOutline } from "react-icons/io5";
+import {
+  IoInformationCircleOutline,
+  IoEye,
+  IoEyeOff,
+} from "react-icons/io5";
+import { toast } from "sonner";
 import { changePassword, getCurrentUser } from "@/lib/appwrite/userApi"; // Assuming getCurrentUser is available
 import { enableAuth } from "@/lib/appwrite/authApi";
 
 function Security() {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const [authType, setAuthType] = useState<"sms" | "email" | "not" | null>(null); // Store current 2FA type
 
   useEffect(() => {
@@ -14,7 +21,6 @@ function Security() {
     const fetchUser = async () => {
       try {
         const user = await getCurrentUser();
-        // Only update authType if user is not null
         if (user) {
           setAuthType(user.twoFa || null); // Set the 2FA status (sms, email, or not)
         }
@@ -27,17 +33,32 @@ function Security() {
 
   const handleChangePassword = async () => {
     if (!oldPassword || !newPassword) {
-      alert("Please enter both old and new passwords.");
+      toast("Please enter both old and new passwords.");
       return;
     }
-    await changePassword(newPassword, oldPassword);
+    try {
+      await changePassword(newPassword, oldPassword);
+      toast("Password changed successfully!");
+    } catch (error) {
+      console.error("Error changing password:", error);
+      toast("Error changing password. Please try again.");
+    }
   };
 
-  // Type the parameter "type" as "sms" | "email" | "not"
   const handleEnableAuth = async (type: "sms" | "email" | "not") => {
     if (authType === type) return; // Prevent re-enabling the same auth type
-    setAuthType(type); // Update the auth type to the selected one
-    await enableAuth(type); // Call enableAuth function from userApi
+    try {
+      setAuthType(type); // Update the auth type to the selected one
+      await enableAuth(type); // Call enableAuth function from userApi
+      if (type === "not") {
+        toast("Two-factor authentication disabled.");
+      } else {
+        toast(`${type.toUpperCase()} authentication enabled.`);
+      }
+    } catch (error) {
+      console.error("Error updating authentication:", error);
+      toast("Error updating authentication. Please try again.");
+    }
   };
 
   return (
@@ -47,15 +68,22 @@ function Security() {
       {/* Old Password */}
       <div className="flex flex-col gap-2 w-2/3 max-sm:w-full">
         <p>Old Password</p>
-        <div className="border border-slate-500 rounded-full flex">
-          <div className="w-full h-full p-3 text-sm flex flex-col gap-2">
+        <div className="border border-slate-500 rounded-full flex items-center">
+          <div className="w-full h-full p-3 text-sm flex items-center">
             <input
-              type="password"
+              type={showOldPassword ? "text" : "password"}
               placeholder="Enter Old Password"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
               className="bg-transparent outline-none text-white w-full text-sm"
             />
+            <button
+              type="button"
+              onClick={() => setShowOldPassword(!showOldPassword)}
+              className="text-white ml-2"
+            >
+              {showOldPassword ? <IoEyeOff size={20} /> : <IoEye size={20} />}
+            </button>
           </div>
         </div>
       </div>
@@ -63,15 +91,22 @@ function Security() {
       {/* New Password */}
       <div className="flex flex-col gap-2 w-2/3">
         <p>New Password</p>
-        <div className="border border-slate-500 rounded-full flex">
-          <div className="w-full h-full p-3 text-sm flex flex-col gap-2">
+        <div className="border border-slate-500 rounded-full flex items-center">
+          <div className="w-full h-full p-3 text-sm flex items-center">
             <input
-              type="password"
+              type={showNewPassword ? "text" : "password"}
               placeholder="Enter New Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               className="bg-transparent outline-none text-white w-full text-sm"
             />
+            <button
+              type="button"
+              onClick={() => setShowNewPassword(!showNewPassword)}
+              className="text-white ml-2"
+            >
+              {showNewPassword ? <IoEyeOff size={20} /> : <IoEye size={20} />}
+            </button>
           </div>
         </div>
       </div>
@@ -87,17 +122,20 @@ function Security() {
       {/* SMS Authentication */}
       <div className="w-full flex justify-between items-center">
         <p className="group duration-200 flex gap-2 items-center relative">
-          SMS Authentication <IoInformationCircleOutline className="cursor-pointer" />
+          SMS Authentication{" "}
+          <IoInformationCircleOutline className="cursor-pointer" />
         </p>
         <div className="flex gap-2 items-center">
           <button
             className={`px-6 text-sm py-1 rounded-full duration-150 ${
-              authType === "sms" ? "bg-blue-600 text-white" : "border border-[#CD7F32]"
+              authType === "sms"
+                ? "bg-blue-600 text-white"
+                : "border border-[#CD7F32]"
             }`}
             disabled={authType === "sms"}
             onClick={() => handleEnableAuth("sms")}
           >
-            Enable
+            {authType === "sms" ? "Enabled" : "Enable"}
           </button>
         </div>
       </div>
@@ -108,12 +146,14 @@ function Security() {
         <div className="flex gap-2 items-center">
           <button
             className={`px-6 text-sm py-1 rounded-full duration-150 ${
-              authType === "email" ? "bg-blue-600 text-white" : "border border-[#CD7F32]"
+              authType === "email"
+                ? "bg-blue-600 text-white"
+                : "border border-[#CD7F32]"
             }`}
             disabled={authType === "email"}
             onClick={() => handleEnableAuth("email")}
           >
-            Enable
+            {authType === "email" ? "Enabled" : "Enable"}
           </button>
         </div>
       </div>
@@ -124,12 +164,14 @@ function Security() {
         <div className="flex gap-2 items-center">
           <button
             className={`px-6 text-sm py-1 rounded-full duration-150 ${
-              authType === "not" ? "bg-blue-600 text-white" : "border border-[#CD7F32]"
+              authType === "not"
+                ? "bg-blue-600 text-white"
+                : "border border-[#CD7F32]"
             }`}
             disabled={authType === "not"}
             onClick={() => handleEnableAuth("not")}
           >
-            Disable
+            {authType === "not" ? "Disabled" : "Disable"}
           </button>
         </div>
       </div>

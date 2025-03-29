@@ -1,9 +1,7 @@
 import React from "react";
-// import Roadmap from "./Roadmap";
 import Blocks from "./ui/Blocks";
 import Roadmap from "./Roadmap";
 import BlockEndSection from "./ui/BlockEndSection";
-import Image from "next/image";
 
 function Decentralization() {
   return (

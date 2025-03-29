@@ -131,7 +131,7 @@ export const updateUserData = async (updatedData) => {
     );
 
     // console.log('User data updated successfully:', response);
-    alert('DATA UPDATED!')
+    
     return response; // Optionally return the updated document
   } catch (error) {
     // console.log('User data update error:', error);
@@ -143,6 +143,9 @@ export const getCurrentUser = async () => {
 
     // Get logged-in user
     const user = await account.get();
+
+    // console.log('production',process.env.NEXT_PUBLIC_DB_ID);
+
     // console.log('cccccccc',user.$id);
     
     // Search for user document in collection by user ID

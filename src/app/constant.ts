@@ -1,9 +1,8 @@
 export const NAVLINKS_ITEMS=[
-    {title:"Home",link:"/"},
-    {title:"Team",link:"/Team"},
-    {title:"Tokenomics",link:"/Tokenomics"},
     {title:"Nodes",link:"/Nodes"},
-    {title:"Whitepaper",link:"/whitepaper"},
+    {title:"Tokenomics",link:"/Tokenomics"},
+    {title:"Team",link:"/Team"},
+    {title:"Career",link:"/jobs"},
 ]
 export const SETTING_ACCOUNT_LINKS=[
     {title:"Account",link:"/settings"},

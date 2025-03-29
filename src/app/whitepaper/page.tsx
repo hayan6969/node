@@ -7,8 +7,8 @@ function page() {
     <>
     <Header/>
     <section className='w-screen min-h-screen flex flex-col gap-8 items-center text-center justify-center'>
-      <h1 className='text-7xl font-semibold tracking-wider'>Whitepaper</h1>
-      <i className='text-2xl font-medium'>Launching Soon</i>
+      <h1 className='text-7xl font-semibold tracking-wider text-white'>Whitepaper</h1>
+      <i className='text-2xl font-medium text-[#FF8730]'>Launching Soon</i>
     </section>
     <Footer/>
     </>

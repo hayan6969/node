@@ -83,7 +83,7 @@ const Page = () => {
   }
 
   return (
-    <div>
+    <div className="text-white">
       {/* Show Orders Button */}
       <button
         onClick={fetchOrders}

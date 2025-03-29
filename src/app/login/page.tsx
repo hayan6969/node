@@ -12,6 +12,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
+import { toast, Toaster } from "sonner";
 
 interface LoginFormInputs {
   email: string;
@@ -31,7 +32,6 @@ function Page() {
   const [continueDisable, setContinueDisable] = useState(true);
   const [showOtp, setShowOtp] = useState(false);
   const [userId, setUserId] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,6 @@ function Page() {
   }, []);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
-    setErrorMessage(""); // Reset error message
     setLoading(true);
     try {
       const { email, password, otp } = data;
@@ -58,15 +57,18 @@ function Page() {
       if (twoFa === "not") {
         await loginEmailAndPass(email, password);
         window.localStorage.setItem("isLoggedIn", "true");
+        toast.success("Logged in successfully!");
         window.location.href = "/";
       } else if (twoFa === "email") {
         if (!showOtp) {
           const userIdRes = await sendEmailOTP(email);
           setUserId(userIdRes || "");
           setShowOtp(true);
+          toast("OTP sent to your email.");
         } else {
           await LoginWithOTP(userId, otp!);
           window.localStorage.setItem("isLoggedIn", "true");
+          toast.success("Logged in successfully!");
           window.location.href = "/";
         }
       } else if (twoFa === "sms") {
@@ -74,27 +76,36 @@ function Page() {
           const userIdRes = await sendSmsOTP(email);
           setUserId(userIdRes || "");
           setShowOtp(true);
+          toast("OTP sent to your phone.");
         } else {
           await LoginWithOTP(userId, otp!);
           window.localStorage.setItem("isLoggedIn", "true");
+          toast.success("Logged in successfully!");
           window.location.href = "/";
         }
       }
     } catch (error: unknown) {
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : "An unexpected error occurred. Please try again."
-      );
+      let friendlyMessage = "An unexpected error occurred. Please try again.";
+      if (error instanceof Error) {
+        const lowerMsg = error.message.toLowerCase();
+        if (lowerMsg.includes("invalid") || lowerMsg.includes("unauthorized")) {
+          friendlyMessage = "Invalid email or password. Please try again.";
+        } else if (lowerMsg.includes("otp")) {
+          friendlyMessage = "The OTP is incorrect. Please check and try again.";
+        } else {
+          friendlyMessage = error.message;
+        }
+      }
+      toast.error(friendlyMessage);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="p-10 md:p-20 bg-black min-h-[100vh] text-white flex flex-col items-center justify-center gap-8">
+    <div className="p-10 md:p-20 max-sm:px-4 bg-black min-h-[100vh] text-white flex flex-col items-center justify-center gap-8">
       <h1 className="text-6xl font-bold">Login</h1>
-      <div className="w-full h-full p-6 rounded-xl bg-gradient-to-r from-[#2B160A] to-[#1A2145] flex flex-col items-center border border-[#004AAD] relative">
+      <div className="w-full h-full p-6 max-sm:p-2 rounded-xl bg-gradient-to-r from-[#2B160A] to-[#1A2145] flex flex-col items-center border border-[#004AAD] relative">
         <div className="text-xl font-semibold">logo</div>
         <div className="flex flex-col text-center pt-12">
           <h3 className="text-5xl font-bold">Welcome</h3>
@@ -102,9 +113,8 @@ function Page() {
             Login to continue to <span className="text-[#cf9f45]"> ASS I AM</span>
           </p>
         </div>
-        {errorMessage && <p className="text-red-500 py-2">{errorMessage}</p>}
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          <div className="flex flex-col py-10 gap-6 w-full px-44">
+          <div className="flex flex-col py-10 gap-6 w-full px-4 max-md:px-12 max-sm:px-4">
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="font-medium text-lg">
                 Email*
@@ -186,6 +196,7 @@ function Page() {
           </Link>
         </p>
       </div>
+      <Toaster />
     </div>
   );
 }

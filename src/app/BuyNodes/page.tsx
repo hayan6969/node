@@ -46,10 +46,10 @@ function Page() {
   return (
     <>
       <Header />
-      <section className="min-h-screen bg-[#080808] pt-32 px-20">
-        <div className="flex gap-12 items-center justify-between h-screen">
-          <div className="px-4 py-2 h-full w-3/5 flex flex-col gap-6 bg-black">
-            <div className="flex justify-between items-center w-full gap-4">
+      <section className="min-h-screen bg-[#080808] pt-32 max-md:pt-16 px-20 max-md:px-10 max-sm:px-4">
+        <div className="flex max-lg:flex-col gap-12 justify-between min-h-screen">
+          <div className="px-4 py-2 h-full w-3/5 max-lg:w-full flex flex-col gap-6 bg-black">
+            <div className="flex justify-between items-center max-sm:flex-col max-sm:text-center w-full gap-4">
               <h1 className="heading text-white">
                 <span className="text-[#CD7F32]">ASS I AM</span> Node License
                 <br />
@@ -68,13 +68,13 @@ function Page() {
               <Image src="./laptop.svg" width={500} height={500} alt="" />
               <p className="text-white mt-8 para">
                 License required to operate an ASS I AM Node.
-                <br />
+                <br className="max-md:hidden block" />
                 Compatible with Windows, MacOS, and Ubuntu.
               </p>
             </div>
           </div>
 
-          <div className="w-2/5 h-full flex flex-col gap-2">
+          <div className="w-2/5 max-lg:w-full h-full flex flex-col gap-2 justify-center">
             {/* Pricing Section */}
             <div className="w-full px-4 flex flex-col gap-4 text-white border-b border-slate-300">
               <div>Logo:</div>

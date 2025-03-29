@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { FaCircle } from "react-icons/fa6";
 import Image from "next/image";
+import GradientText from "@/components/GradientText/GradientText";
+import Link from "next/link";
 function page() {
   return (
     <>
@@ -10,9 +12,15 @@ function page() {
       <div className="bg-[#080808] min-h-screen text-white pb-0 overflow-hidden">
         {/* heropage */}
         <div className="flex items-center justify-center h-screen pt-10 border-b border-white flex-col text-[10vw] max-md:text-[20vw] leading-none text-[#CD7F32] font-bold relative overflow-hidden">
-        <Image src='./star 2.svg' width={300} height={300} alt="star_icon " className=" absolute top-1/3 left-2/3 -translate-x-20 max-sm:scale-50 max-lg:-translate-x-8" />
-        <Image src='./star 2.svg' width={200} height={200} alt="star_icon " className=" absolute top-1/4 left-1/4 -translate-x-20 max-lg:-translate-x-28 max-sm:scale-75" />
-        <Image src='./star 2.svg' width={100} height={100} alt="star_icon " className=" absolute top-2/3 left-1/3 -translate-x-10 max-md:left-1/2 max-md:top-3/4" />
+        <svg width="300" height="300" viewBox="0 0 342 342" fill="none" xmlns="http://www.w3.org/2000/svg" className=" absolute top-1/3 left-2/3 -translate-x-20 max-sm:scale-50 max-lg:-translate-x-8">
+<path d="M171 0L210.744 22.6744L256.5 22.9097L279.582 62.4181L319.09 85.5L319.326 131.256L342 171L319.326 210.744L319.09 256.5L279.582 279.582L256.5 319.09L210.744 319.326L171 342L131.256 319.326L85.5 319.09L62.4181 279.582L22.9097 256.5L22.6744 210.744L0 171L22.6744 131.256L22.9097 85.5L62.4181 62.4181L85.5 22.9097L131.256 22.6744L171 0Z" fill="#D9D9D9"/>
+</svg>
+        <svg width="200" height="200" viewBox="0 0 342 342" fill="none" xmlns="http://www.w3.org/2000/svg" className=" absolute top-1/4 left-1/4 -translate-x-20 max-lg:-translate-x-28 max-sm:scale-75" >
+<path d="M171 0L210.744 22.6744L256.5 22.9097L279.582 62.4181L319.09 85.5L319.326 131.256L342 171L319.326 210.744L319.09 256.5L279.582 279.582L256.5 319.09L210.744 319.326L171 342L131.256 319.326L85.5 319.09L62.4181 279.582L22.9097 256.5L22.6744 210.744L0 171L22.6744 131.256L22.9097 85.5L62.4181 62.4181L85.5 22.9097L131.256 22.6744L171 0Z" fill="#D9D9D9"/>
+</svg>
+        <svg width="100" height="100" viewBox="0 0 342 342" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-2/3 left-1/3 -translate-x-10 max-md:left-1/2 max-md:top-3/4">
+<path d="M171 0L210.744 22.6744L256.5 22.9097L279.582 62.4181L319.09 85.5L319.326 131.256L342 171L319.326 210.744L319.09 256.5L279.582 279.582L256.5 319.09L210.744 319.326L171 342L131.256 319.326L85.5 319.09L62.4181 279.582L22.9097 256.5L22.6744 210.744L0 171L22.6744 131.256L22.9097 85.5L62.4181 62.4181L85.5 22.9097L131.256 22.6744L171 0Z" fill="#D9D9D9"/>
+</svg>
         <span className="absolute before:absolute before:w-52 before:h-28 before:bg-white left-32 top-1/2 max-lg:bottom-0 max-lg:left-5 translate-y-12 before:rounded-lg before:top-full text-center para text-white flex justify-center items-center">Powerd by Coffee <br />Creativity, and <br />Collabration</span>
           <h1 className="font-semibold z-10">ABOUT</h1>
           <h1 className="font-semibold z-10">OUR</h1>
@@ -21,7 +29,14 @@ function page() {
         {/* second Page */}
         <div className="p-10 md:p-20 flex flex-col gap-10 md:gap-20 max-sm:px-4 para border-b border-white ">
           <div className="flex flex-col gap-8">
+            <GradientText
+              colors={["#ffffff", "#ffffff", "#ffffff", "#3570bf", "#004aad", "#3570bf", "#ffffff", "#ffffff", "#ffffff"]}
+              animationSpeed={7}
+              showBorder={false}
+              className="heading"
+            >
             <h1 className="heading">The Team – The Energy Behind ASS I AM</h1>
+            </GradientText>
             <p>
               We’re a team with big ambitions and an even bigger vision. At ASS
               I AM, this isn’t just work—it’s our passion, our purpose, and what
@@ -80,7 +95,14 @@ function page() {
 
         {/* fourth section */}
         <div className="p-10 md:p-20 max-sm:px-4 pb-0 md:pb-0">
+        <GradientText
+              colors={["#ffffff", "#ffffff", "#ffffff", "#3570bf", "#004aad", "#3570bf", "#ffffff", "#ffffff", "#ffffff"]}
+              animationSpeed={7}
+              showBorder={false}
+              className="heading"
+            >
           <h1 className="heading">We’re Growing – Be Part of It</h1>
+            </GradientText>
           <p className="mt-10 para">
           What began as a small team is evolving into a thriving network of visionaries, technicians, creatives, and doers. Together, we’re shaping a team that knows exactly what it wants:
           </p>
@@ -101,13 +123,20 @@ function page() {
             ASS I AM – Together, We Build the Future. <br />No Shame. No Limits. All Together
             </h1>
           </div>
-          <div className="flex flex-col items-center justify-center  text-orange-500">
+          <div className="flex flex-col items-center justify-center">
+          <GradientText
+              colors={["#ffffff","#ffffff", "#ffffff", "#ffde59", "#cd7f32", "#ffde59", "#ffffff", "#ffffff", "#ffffff"]}
+              animationSpeed={7}
+              showBorder={false}
+              className="heading"
+            >
             <h1 className="mt-20 md:mt-32 heading">
               Join Us – Explore Current Opportunities
             </h1>
-            <button className="mt-10 border-blue-500 border px-7 text-white py-1 rounded-lg mb-20">
+            </GradientText>
+            <Link href='/jobs' className="mt-10 border-blue-500 border px-7 text-white py-1 rounded-lg mb-20">
               View jobs
-            </button>
+            </Link>
           </div>
       <Footer />
         </div>

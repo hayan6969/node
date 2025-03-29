@@ -1,10 +1,11 @@
 import React from "react";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 import { FaMediumM } from "react-icons/fa";
 import { BsTelegram } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa6";
+import { RiDiscordLine } from "react-icons/ri";
 export default function Footer() {
   const CASES = [
     "UI design",
@@ -39,12 +40,12 @@ export default function Footer() {
         <div className="flex max-md:w-full flex-col gap-2">
           <div>LOGO.</div>
            <div className='flex max-md:w-full gap-2'>
-                    <FaXTwitter className="cursor-pointer" />
-                    <FaYoutube className="cursor-pointer" />
-                    <FaInstagram className="cursor-pointer" />
-                    <BsTelegram className="cursor-pointer" />
-                    <FaDiscord className="cursor-pointer" />
-                    <FaMediumM className="cursor-pointer"/>
+           <FaXTwitter className="text-white border-2 border-white rounded-full p-1 text-xl w-auto h-auto bg-transparent hover:bg-white hover:text-black duration-150 cursor-pointer" />
+          <FaYoutube className="text-white border-2 border-white rounded-full p-1.5 text-lg w-auto h-auto bg-transparent hover:bg-red-700  duration-150 cursor-pointer" />
+          <FaInstagram className="text-white border-2 border-white rounded-full p-1.5 text-lg w-auto h-auto bg-transparent hover:bg-gradient-to-b from-[#4c68d7] via-pink-500 to-[#fccc63]  duration-150 cursor-pointer" />
+           <FaTelegramPlane className="text-white border-2 border-white rounded-full p-1 text-xl w-auto h-auto bg-transparent hover:bg-sky-500 hover:text-white duration-150 cursor-pointer" />
+  <RiDiscordLine  className="text-white border-2 border-white rounded-full p-1 px-[5px] text-xl w-auto h-auto bg-transparent hover:bg-indigo-500 duration-150 cursor-pointer" />
+           <FaMediumM className="text-white border-2 border-white rounded-full p-1 text-xl w-auto h-auto bg-transparent hover:bg-white hover:text-black duration-150 cursor-pointer" />
                     </div>
         </div>
         <div className="flex flex-col max-md:w-full gap-6">

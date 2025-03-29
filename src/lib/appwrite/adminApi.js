@@ -46,7 +46,7 @@ export const createJob = async (data) => {
                 ID.unique(), // Automatically generate a unique ID for this document
                 data
             );
-            alert('job create SUCCESS!')
+            
 
         }
         else {
