@@ -140,15 +140,14 @@ export const updateUserData = async (updatedData) => {
 }
 
 export const getCurrentUser = async () => {
-    // console.log('getting');
 
     // Get logged-in user
     const user = await account.get();
+
     // console.log('production',process.env.NEXT_PUBLIC_DB_ID);
+
     // console.log('cccccccc',user.$id);
     
-    // if (!user) return null; // If no user, return null
-
     // Search for user document in collection by user ID
     const response = await databases.listDocuments(process.env.NEXT_PUBLIC_DB_ID,  // Database ID
       process.env.NEXT_PUBLIC_USERS_COLLECTION, [
@@ -164,7 +163,6 @@ export const getCurrentUser = async () => {
 };
 
 export const registerWithEmailAndPass = async (userData) => {
-  // console.log('Registering the user...', userData);
   const user = await account.create(
     ID.unique(), // Unique ID for the user
     userData.email,       // User's email
@@ -178,7 +176,6 @@ export const registerWithEmailAndPass = async (userData) => {
 
 export const addUserToDB = async (email, username, firstname, lastname, refer,userId) => {
   try {
-    // console.log('adding to doc');
     const registerData = {
       first_name: firstname,
       last_name: lastname,
@@ -187,7 +184,6 @@ export const addUserToDB = async (email, username, firstname, lastname, refer,us
       userId
     };
 
-    // console.log('data', firstname, lastname, email);
     // Only add refer if it exists
     if (refer) {
       registerData.refer = refer;
@@ -220,7 +216,6 @@ export const addUserToDB = async (email, username, firstname, lastname, refer,us
         }
       );
     }
-    // console.log('addED');
 
   } catch (error) {
     // console.log('register DB user Error:', error);
@@ -238,7 +233,6 @@ const addReferralToUser = async (userId, referedUser) => {
     );
 
     if (!response) {
-      // console.log("User not found");
       return null;
     }
 
@@ -291,7 +285,6 @@ export const sendEmailOTP = async (email) => {
     );
 
     const userId = sessionToken.userId;
-    // console.log('Email sent successfully, user ID:', userId);
 
     // Return the userId for further use
     return userId;

@@ -54,7 +54,9 @@ function Page() {
       const { email, password, username, firstname, lastname } = data;
       await registerWithEmailAndPass({ email, password, username, firstname, lastname, refer });
       console.log("User registered successfully", data);
+
       toast.success("Registration successful!");
+
 
       await sendEmail(
         "Welcome to Our Platform!",
@@ -199,8 +201,13 @@ The Team`,
           )}
         </form>
         <LoginWithGoogle register={true} />
+
+        <p className="para text-center">
+          Already have an account?{" "}
+
         <p className="text-base font-medium text-center">
           Already have an account? <br />
+
           <Link href="/login" className="text-blue-700 cursor-pointer">
             Login
           </Link>
